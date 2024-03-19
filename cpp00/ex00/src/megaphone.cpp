@@ -6,7 +6,7 @@
 /*   By: vpeinado <vpeinado@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:14:55 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/03/19 19:44:53 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/03/19 20:36:38 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int main(int argc, char **argv)
         {
             for(int j = 0; argv[i][j]; j++)
                 std::cout << (char)toupper(argv[i][j]);
-            std::cout << " ";
         }
     }
     std::cout << std::endl;
