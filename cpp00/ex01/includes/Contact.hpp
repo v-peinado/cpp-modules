@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:19 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/03/22 22:46:36 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:07:59 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ class Contact
         std::string _nickname;
         std::string _phoneNumber;
         std::string _darkestSecret;
-        int         _contactIndex;
 
     public:
         Contact();
         ~Contact();
-
-        void setValues(std::string value);
+        int         _contactIndex;
+        void        setValues(std::string value);
         std::string getValues();
 };
+
+
 
 #endif
