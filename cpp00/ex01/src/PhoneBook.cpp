@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:07 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/03/31 20:07:52 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:03:45 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ PhoneBook::~PhoneBook()
 
 void PhoneBook::addContact()
 {
-    if (this->_maxIndex <= 1)
+    if (this->_maxIndex <= 7)
     {   
         this->_contacts[this->_maxIndex].setValues("name");
         this->_contacts[this->_maxIndex].setValues("lastName");
@@ -44,14 +44,13 @@ void PhoneBook::addContact()
         if (answer == "y" || answer == "Y")
         {
             int oldest = oldestContact(this->_contacts);
-            std::cout << "Oldest contact: " << oldest << std::endl;
             this->_contacts[oldest].setValues("name");
             this->_contacts[oldest].setValues("lastName");
             this->_contacts[oldest].setValues("nickname");
             this->_contacts[oldest].setValues("phoneNumber");
             this->_contacts[oldest].setValues("darkestSecret");
-            this->_maxIndex++;
             this->_contacts[oldest]._contactIndex = this->_maxIndex;
+            this->_maxIndex++;
             std::cout << "Contact added, Index: " <<  oldest << std::endl;
         }
         else
@@ -65,7 +64,7 @@ int PhoneBook::oldestContact(Contact contacts[])
     //Es decir, el contacto cuyo _indexContact sea el menor
     // si el _indexContact menor esta en la posicion 3 del array retornara 3
     int oldest = 0;
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i <= 7; i++)
     {
         if (contacts[i]._contactIndex < contacts[oldest]._contactIndex)
             oldest = i;
@@ -73,4 +72,20 @@ int PhoneBook::oldestContact(Contact contacts[])
     return (oldest);
 }
 
+void PhoneBook::searchContact()
+{
+    int index;
+    
+    std::cout << "Index?" << std::endl;
+    std::cin >> index;
+    for (int i = 0; i <= 7; i++)
+    {
+        if (index == i)
+        {
+            _contacts[i].getValues();
+            return;
+        }
+    }
+    std::cout << "Contact not found" << std::endl;
+}
 

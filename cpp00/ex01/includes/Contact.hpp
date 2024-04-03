@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:19 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/03/31 20:09:06 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/01 21:00:29 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Contact
         ~Contact();
         int         _contactIndex;
         void        setValues(std::string value);
-        std::string getValues(int index);
+        void        getValues();
 };
 
 

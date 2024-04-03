@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:40 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/03/31 20:10:56 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/02 22:31:59 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void Contact::setValues(std::string value)
         std::getline(std::cin, input);
         if ((input.compare("") == 0))
         {
-            std::cout << "Desbes escribir " << value;
+            std::cout << "You must enter " << value << std::endl;
             std::getline(std::cin, input);
         }
     }
@@ -39,5 +39,14 @@ void Contact::setValues(std::string value)
         this->_phoneNumber = input;
     else if (value.compare("darkestSecret") == 0)
         this->_darkestSecret = input;
+}
+
+void Contact::getValues()
+{
+    std::cout << "Name: " << this->_name << std::endl;
+    std::cout << "Last Name: " << this->_lastName << std::endl;
+    std::cout << "Nickname: " << this->_nickname << std::endl;
+    std::cout << "Phone Number: " << this->_phoneNumber << std::endl;
+    std::cout << "Darkest Secret: " << this->_darkestSecret << std::endl;
 }
 

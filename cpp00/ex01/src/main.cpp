@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:55:55 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/03/26 20:58:55 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/02 22:26:38 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main (void)
         else if(prompt.compare("ADD") == 0)
             MyPhoneBook->addContact();
         else if(prompt.compare("SEARCH") == 0)
-            std::cout << "Funcion buscar" << std::endl;
+            MyPhoneBook->searchContact();
     }
     delete MyPhoneBook;
 
