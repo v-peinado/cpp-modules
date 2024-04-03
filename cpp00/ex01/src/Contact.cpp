@@ -6,11 +6,13 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:40 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/02 22:31:59 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/03 23:19:31 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+#include <iomanip>
+#include <string>
 
 Contact::Contact() {}
 
@@ -19,17 +21,16 @@ Contact::~Contact() {}
 void Contact::setValues(std::string value)
 {
     std::string input;
-    while(input.compare("") == 0)
-    {
-        std::cout << "Enter the " << value << ": ";
-        std::getline(std::cin, input);
-        if ((input.compare("") == 0))
-        {
-            std::cout << "You must enter " << value << std::endl;
-            std::getline(std::cin, input);
-        }
+    std::cout << "Enter the " << value << ": " << std::endl;
+    if (!std::getline(std::cin, input)) {
+        std::cerr << "Error de lectura o EOF detectado" << std::endl;
     }
-    if (value.compare("name") == 0)
+    else if (input.empty())
+    {
+        std::cout << "**You must enter " << value << std::endl;
+        setValues(value);
+    } 
+    else if (value.compare("name") == 0)
         this->_name = input;
     else if (value.compare("lastName") == 0)
         this->_lastName = input;
@@ -38,15 +39,37 @@ void Contact::setValues(std::string value)
     else if (value.compare("phoneNumber") == 0)
         this->_phoneNumber = input;
     else if (value.compare("darkestSecret") == 0)
-        this->_darkestSecret = input;
+        this->_darkestSecret = input;       
 }
+std::string truncate(std::string str)
+{
+  if (str.length() > 10) 
+    return (str.substr(0, 9) + ".");
+  return (str);
+}
+
 
 void Contact::getValues()
 {
-    std::cout << "Name: " << this->_name << std::endl;
-    std::cout << "Last Name: " << this->_lastName << std::endl;
-    std::cout << "Nickname: " << this->_nickname << std::endl;
-    std::cout << "Phone Number: " << this->_phoneNumber << std::endl;
-    std::cout << "Darkest Secret: " << this->_darkestSecret << std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "|";
+    std::cout << std::right << std::setw(10) << "Index";
+    std::cout << "|";
+    std::cout << std::right << std::setw(10) << "First name";
+    std::cout << "|";
+    std::cout << std::right << std::setw(10) << "Last name";
+    std::cout << "|";
+    std::cout << std::right << std::setw(10) << "Nickname" ;
+    std::cout << "|" << std::endl;
+    std::cout << "|-------------------------------------------|" << std::endl;
+    std::cout << "|";
+    std::cout << std::right << std::setw(10) << this->_arrayIndex;
+    std::cout << "|";
+    std::cout << std::right << std::setw(10) << truncate(this->_name);
+    std::cout << "|";
+    std::cout << std::right << std::setw(10) << truncate(this->_lastName);
+    std::cout << "|";
+    std::cout << std::right << std::setw(10) << truncate(this->_nickname);
+    std::cout << "|" << std::endl;
+    std::cout << "---------------------------------------------" << std::endl;
 }
-

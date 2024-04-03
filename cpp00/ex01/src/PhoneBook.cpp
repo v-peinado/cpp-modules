@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:07 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/02 21:03:45 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/03 23:02:28 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 PhoneBook::PhoneBook()
 {
-    std::cout << "PHONEBOOK CREATED" << std::endl;
+    std::cout << "***********************" << std::endl;
+    std::cout << "*  PHONEBOOK CREATED  *" << std::endl;
+    std::cout << "***********************" << std::endl;
     this->_maxIndex = 0;
 }
 
@@ -33,6 +35,7 @@ void PhoneBook::addContact()
         this->_contacts[this->_maxIndex].setValues("phoneNumber");
         this->_contacts[this->_maxIndex].setValues("darkestSecret");
         this->_contacts[this->_maxIndex]._contactIndex = this->_maxIndex;
+        this->_contacts[this->_maxIndex]._arrayIndex = this->_maxIndex;
         std::cout << "Contact added, Index: " <<  _maxIndex << std::endl;
         this->_maxIndex++;
     }
@@ -50,6 +53,7 @@ void PhoneBook::addContact()
             this->_contacts[oldest].setValues("phoneNumber");
             this->_contacts[oldest].setValues("darkestSecret");
             this->_contacts[oldest]._contactIndex = this->_maxIndex;
+            this->_contacts[oldest]._arrayIndex = oldest;
             this->_maxIndex++;
             std::cout << "Contact added, Index: " <<  oldest << std::endl;
         }
@@ -76,16 +80,30 @@ void PhoneBook::searchContact()
 {
     int index;
     
+    if(this->_maxIndex == 0)
+    {
+        std::cout << "The PhoneBook is empty" << std::endl;
+        return;
+    }
     std::cout << "Index?" << std::endl;
     std::cin >> index;
+    if(index < 0 || index > 7)
+    {
+        std::cout << "Invalid index" << std::endl;
+        return;
+    }
+    if(index >= this->_maxIndex)
+    {
+        std::cout << "Contact not found" << std::endl;
+        return;
+    }
     for (int i = 0; i <= 7; i++)
     {
         if (index == i)
-        {
-            _contacts[i].getValues();
+        { 
+            this->_contacts[i].getValues();
             return;
         }
     }
-    std::cout << "Contact not found" << std::endl;
 }
 
