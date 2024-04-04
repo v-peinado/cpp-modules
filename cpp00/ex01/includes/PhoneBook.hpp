@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:14 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/04 17:44:49 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/05 01:45:54 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ class PhoneBook
     public:
         PhoneBook(); // Constructor, crear un array de 8 punteros a Contact, inicializar _index a 0 y _size a 0
         ~PhoneBook(); // Destructor, liberar la memoria de los punteros a Contact
-
         void addContact();
         void searchContact();
 };
