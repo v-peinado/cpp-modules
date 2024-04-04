@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:14 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/02 13:42:24 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:44:49 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define PHONEBOOK_H
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <cstdlib> 
 #include "Contact.hpp"
 
 class PhoneBook

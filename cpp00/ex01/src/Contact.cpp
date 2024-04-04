@@ -6,26 +6,35 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:40 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/03 23:19:31 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:45:28 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
-#include <iomanip>
-#include <string>
+#include "PhoneBook.hpp"
 
 Contact::Contact() {}
 
 Contact::~Contact() {}
+
+
+int Contact::only_spaces(std::string str) {
+    for (std::string::iterator it = str.begin(); it != str.end(); it++)
+    {
+        if (*it != ' ') 
+            return 0;
+    }
+    return 1;
+}
 
 void Contact::setValues(std::string value)
 {
     std::string input;
     std::cout << "Enter the " << value << ": " << std::endl;
     if (!std::getline(std::cin, input)) {
-        std::cerr << "Error de lectura o EOF detectado" << std::endl;
+        std::cout << "EOF detected. Bye bye \U0001F44B\n" << std::endl;
+        exit(0);
     }
-    else if (input.empty())
+    else if (input.empty() || only_spaces(input))
     {
         std::cout << "**You must enter " << value << std::endl;
         setValues(value);
