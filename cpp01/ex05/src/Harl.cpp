@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 21:16:44 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/14 22:12:55 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/14 22:38:37 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,32 @@ void Harl::complain(std::string level) {
     // vamos a hacer un array de punteros a funciones tipo void
     // que apuntan a las funciones de la clase Harl (Harl::*Levels[])
     // seguido de () para indicar que es un array de punteros a funciones que no reciben argumentos    
-	void (Harl::*Levels[])() = {
+	void (Harl::*levels[])() = {
         &Harl::debug,
         &Harl::info,
         &Harl::warning,
         &Harl::error
         };
-    switch (level[0]) {
-        case 'D':
-            (this->*Levels[0])();
+        
+    int i = 0;
+    // vamos a hacer un array de strings con los niveles de log para comparar y segun el indice ejecutar la funcion correspondiente
+	std::string lvls[] = { "DEBUG", "INFO", "WARNING", "ERROR"};
+	for(i = 0; i < 4; i++)
+		if(level == lvls[i])
+			break;
+    
+    switch (i) {
+        case 0:
+            (this->*levels[0])();
             break;
-        case 'I':
-            (this->*Levels[1])();
+        case 1:
+            (this->*levels[1])();
             break;
-        case 'W':
-            (this->*Levels[2])();
+        case 2:
+            (this->*levels[2])();
             break;
-        case 'E':
-            (this->*Levels[3])();
+        case 3:
+            (this->*levels[3])();
             break;
         default:
             std::cout << "Invalid level" << std::endl;

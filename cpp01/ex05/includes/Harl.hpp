@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 21:13:00 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/14 21:41:06 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/14 22:14:54 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ class Harl {
         ~Harl();
         void complain(std::string level);
 };
-
 
 #endif
