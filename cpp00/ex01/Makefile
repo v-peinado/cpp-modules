@@ -11,7 +11,7 @@ NAME	= phonebook
 
 #Compiler
 CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
 RM		= rm -f
 
 #Includes
@@ -22,7 +22,6 @@ SRC_PATH	= src/
 SRC 	= main.cpp \
 			PhoneBook.cpp \
 			Contact.cpp
-SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
 #Object files
 OBJ_PATH	= obj/
