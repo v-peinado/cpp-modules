@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vpeinado <vpeinado@student.42madrid.com    +#+  +:+       +#+         #
+#    By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 15:14:58 by vpeinado          #+#    #+#              #
-#    Updated: 2024/03/20 18:02:38 by vpeinado         ###   ########.fr        #
+#    Updated: 2024/04/30 16:35:13 by vpeinado         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,21 +27,20 @@ CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
 RM		= rm -f
 
 #Source files
-SRC_PATH	= src/
-SRC 	= megaphone.cpp
-SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+SRC_DIR	= src/
+SRC 	= $(shell find $(SRC_DIR) -type f -iname "*.cpp" | sed 's|^src/||')
 
 #Object files
-OBJ_PATH	= obj/
+OBJ_DIR	= obj/
 OBJ		= $(SRC:.cpp=.o)
-OBJS 	= $(addprefix $(OBJ_PATH), $(OBJ))
+OBJS 	= $(addprefix $(OBJ_DIR), $(OBJ))
 
 all: obj $(NAME)
 
 obj:
-	@mkdir -p $(OBJ_PATH)
+	@rsync -av --include '*/' --exclude '*' --quiet $(SRC_DIR) $(OBJ_DIR)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp | $(OBJ_PATH)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ 
 
 $(NAME): $(OBJS)
@@ -49,7 +48,7 @@ $(NAME): $(OBJS)
 	@printf "$(GREEN)Megaphone: OK!$(RESET)\n"
 
 clean:
-	@$(RM) -Rf $(OBJ_PATH)
+	@$(RM) -Rf $(OBJ_DIR)
 	@printf "$(YELLOW)Object files: $(RED)Deleted!$(RESET)\n"
 
 fclean: clean
