@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:30:24 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/18 21:34:59 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:31:09 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class Fixed {
         //=========Sobrecarga de operadores===========//
         
         //Operador de asignación
-         Fixed &operator=(const Fixed &copy);
+         Fixed &operator=(const Fixed &value);
         
         //Operadores aritméticos
         Fixed operator+(const Fixed &value) const;
