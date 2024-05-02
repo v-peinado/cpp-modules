@@ -17,22 +17,20 @@ RM		= rm -f
 INC			= -I ./inc/
 
 #Source files
-SRC_PATH	= src/
-SRC 	= main.cpp \
-			ClapTrap.cpp
-SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+SRC_DIR	= src/
+SRC 	= $(shell find $(SRC_DIR) -type f -iname "*.cpp" | sed 's|^src/||')
 
 #Object files
-OBJ_PATH	= obj/
+OBJ_DIR	= obj/
 OBJ		= $(SRC:.cpp=.o)
-OBJS 	= $(addprefix $(OBJ_PATH), $(OBJ))
+OBJS 	= $(addprefix $(OBJ_DIR), $(OBJ))
 
 all: obj $(NAME)
 
 obj:
-	@mkdir -p $(OBJ_PATH)
+	@rsync -av --include '*/' --exclude '*' --quiet $(SRC_DIR) $(OBJ_DIR)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp | $(OBJ_PATH)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@ 
 
 $(NAME): $(OBJS)
@@ -40,7 +38,7 @@ $(NAME): $(OBJS)
 	@printf "$(GREEN)ex00: OK!$(RESET)\n"
 
 clean:
-	@$(RM) -Rf $(OBJ_PATH)
+	@$(RM) -Rf $(OBJ_DIR)
 	@printf "$(YELLOW)Object files: $(RED)Deleted!$(RESET)\n"
 
 fclean: clean
