@@ -29,7 +29,7 @@ OBJS 	= $(addprefix $(OBJ_DIR), $(OBJ))
 all: obj $(NAME)
 
 obj:
-	@@rsync -av --include '*/' --exclude '*' --quiet $(SRC_DIR) $(OBJ_DIR)
+	@rsync -av --include '*/' --exclude '*' --quiet $(SRC_DIR) $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@ 
