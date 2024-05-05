@@ -7,10 +7,11 @@ CURSIVE	=	\033[33;3m
 RED		= 	\033[31m
 
 #Program name
-NAME	= claptrap
+NAME	= scavtrap
 #Compiler
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
+CFLAGS	+= -g3 -fsanitize=address
 RM		= rm -f
 
 #Includes
@@ -35,7 +36,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp | $(OBJ_DIR)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJS)
-	@printf "$(GREEN)ex00: OK!$(RESET)\n"
+	@printf "$(GREEN)$(NAME): OK!$(RESET)\n"
 
 clean:
 	@$(RM) -Rf $(OBJ_DIR)
@@ -43,7 +44,7 @@ clean:
 
 fclean: clean
 	@$(RM) -f $(NAME)
-	@printf "$(YELLOW)ex00: $(RED)Deleted!$(RESET)\n"
+	@printf "$(YELLOW)$(NAME): $(RED)Deleted!$(RESET)\n"
 
 re: fclean all
 

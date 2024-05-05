@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:10:13 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/19 22:17:41 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/05 13:15:57 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,28 @@
 #define CLAPTRAP_HHP
 
 #include <iostream>
+#include <string>
+
+/*
+* Cambios realizados:
+ - La parte privada se ha cambiado a protected para que las clases hijas puedan acceder a los atributos.
+ - El destructor se ha cambiado a virtual para que las clases hijas puedan sobreescribirlo.
+ -Antes de llamar al contructor de la clase derivada, se llama al constructor de la clase base ya que la clase base es la que inicializa los atributos.
+ -Primero se llama al destructor de la clase derivada para asegurar que cualquier recurso asignado por las clases derivadas se libere antes de destruir las partes base del objeto
+ - Sin un destructor virtual en la clase base, si destruyes un objeto derivado a través de un puntero a la clase base, solo se llamará al destructor de la clase base,
+  dejando el destructor de la clase derivada sin llamar. Esto puede llevar a fugas de memoria, recursos no liberados o comportamiento inesperado.
+*/
 
 class ClapTrap
 {
-    private:
+    protected:
         std::string _name;
         int _hitpoints;
         int _energyPoints;
         int _attackDamage;
     public:
         ClapTrap(std::string name);
-        ~ClapTrap();
+        virtual ~ClapTrap();
         ClapTrap(const ClapTrap &other);
         ClapTrap &operator=(const ClapTrap &rhs);
 
