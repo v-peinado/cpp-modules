@@ -6,12 +6,12 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:21:19 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/04 17:46:18 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:05:28 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_H
-#define CONTACT_H
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
 
 class Contact
 {
@@ -26,8 +26,8 @@ class Contact
     public:
         Contact();
         ~Contact();
-        int         _arrayIndex;
-        int         _contactIndex;
+        int         _arrayIndex; //sera el indice del array de contactos, para saber su posicion al buscarlo
+        int         _contactIndex; //sera el indice real del contacto , para saber cual es el mas antiguo
         void        setValues(std::string value);
         void        getValues();
 };
