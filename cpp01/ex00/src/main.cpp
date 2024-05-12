@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:45:56 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/05 01:28:14 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/07 15:45:13 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int main(void)
     
     std::cout << "********STACK*******" << std::endl;
     randomChump("stack_zombie");
-    return (0);
+    return 0;
 }

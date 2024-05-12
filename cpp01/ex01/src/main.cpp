@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 12:12:17 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/06 13:38:12 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/04/07 15:45:00 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ int main(void) {
     Zombie *walkers = zombieHorde(N, name);
     
     delete [] walkers;
+    return 0;
 }

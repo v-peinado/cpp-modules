@@ -12,6 +12,7 @@ NAME	= human
 #Compiler
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
+CFLAGS	+= -g3 -fsanitize=address
 RM		= rm -f
 
 #Includes
