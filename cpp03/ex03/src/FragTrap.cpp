@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:06:30 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/05 15:03:45 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/21 03:56:27 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
     this->_hitpoints = 100;
     this->_energyPoints = 100;
     this->_attackDamage = 30;
+    this->_fragHitpoints = this->_hitpoints;
+    this->_fragEnergyPoints = this->_energyPoints;
+    this->_fragAttackDamage = this->_attackDamage;
 }
 
 /* DESTRUCTOR */
@@ -51,4 +54,18 @@ FragTrap &FragTrap::operator=(const FragTrap &rhs) {
 
 void FragTrap::highFivesGuys(void) {
     std::cout << "FragTrap " << _name << " is asking for a high five!" << std::endl;
+}
+
+int FragTrap::getValue(std::string value) {
+    if (value == "hitpoints")
+        return this->_hitpoints;
+        //return this->_fragHitpoints;
+    if (value == "energy points")
+        return this->_energyPoints;
+        //return this->_fragHitpoints;
+    if (value == "attack damage")
+        return this->_attackDamage;
+        //return this->_fragAttackDamage;
+    else
+        return 0;
 }

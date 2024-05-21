@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 20:53:34 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/06 19:20:18 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/21 03:58:56 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
     this->_energyPoints = 50;
     this->_attackDamage = 20;
     this->_isGuardGate = false;
+    this->_scavHitpoints = this->_hitpoints;
+    this->_scavEnergyPoints = this->_energyPoints;
+    this->_scavAttackDamage = this->_attackDamage;
 }
 
 ScavTrap::~ScavTrap()
@@ -79,4 +82,16 @@ void ScavTrap::guardGate()
     }
     this->_isGuardGate = true;
     std::cout << "ScavTrap " << this->_name << " have activated the guard gate." << std::endl;
+}
+
+int ScavTrap::getValue(std::string value)
+{
+    if (value == "hitpoints")
+        return this->_scavHitpoints;
+    else if (value == "energy points")
+        return this->_scavEnergyPoints;
+    else if (value == "attack damage")
+        return this->_scavAttackDamage;
+    else
+        return 0;
 }

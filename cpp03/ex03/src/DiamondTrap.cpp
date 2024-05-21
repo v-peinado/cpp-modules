@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:35:29 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/06 19:32:08 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/20 21:26:54 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
 {
     _name = name;
-    _hitpoints = FragTrap::_hitpoints;
-    _energyPoints = ScavTrap::_energyPoints;
-    _attackDamage = FragTrap::_attackDamage;
+    this->_attackDamage = FragTrap::getValue("attack damage");
+    this->_hitpoints = FragTrap::getValue("hitpoints");
+    this->_energyPoints = ScavTrap::getValue("energy points");
+    
     std::cout << "DiamondTrap " << _name << " is here!" << std::endl;
 }
 
@@ -48,6 +49,14 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &rhs)
 }
 
 /* MEMBER FUNCTIONS */
+
+void DiamondTrap::getValues()
+{
+    std::cout << "Name: " << this->_name << std::endl;
+    std::cout << "Hitpoints: " <<  this->_hitpoints << std::endl;
+    std::cout << "Energy Points: " << this->_energyPoints << std::endl;
+    std::cout << "Attack Damage: " << this->_attackDamage << std::endl;
+}
 
 void DiamondTrap::whoAmI()
 {
