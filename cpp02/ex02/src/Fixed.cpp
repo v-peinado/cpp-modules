@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:30:18 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/02 14:05:57 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:51:56 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ Fixed Fixed::operator--(int) {
 }
 
 bool Fixed::operator>(const Fixed &value) const {
-    return this->toFloat() > value.toFloat();
+    return this->toFloat() > value.toFloat(); //si el resultadod e esta operación es verdadero, devolverá true
 }
 
 bool Fixed::operator<(const Fixed &value) const {

@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:34:57 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/13 12:48:31 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:27:27 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ En un número en punto fijo, un número entero se representa con una parte enter
 La parte entera se almacena en los bits más significativos y la parte fraccionaria en los bits menos significativos.
 En este caso, se almacena en 8 bits la parte fraccionaria.
 8 bits para la parte fraccionaria significa que se pueden representar 256 valores diferentes.
-2 elevado a -8 es igual a 1/256, por lo que el valor de la parte fraccionaria es 1/256.
+2 elevado a -8 es igual a 1/256, por lo que el valor de la parte fraccionaria es 1/256 = 0.00390625.
 Los numeros de punto fijo se utilizan en aplicaciones donde se necesita mayor rendimiento, sacrificando precisión, al limitar
 la parte decimal pero favorecer los calculos con enteros.
 */

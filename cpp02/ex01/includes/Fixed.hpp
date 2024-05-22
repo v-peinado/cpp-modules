@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:30:24 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/18 12:54:09 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:12:07 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Fixed {
     
         Fixed(); //Constructor por defecto
         Fixed(const int value); 
-        Fixed(const float value);
+        Fixed(const float value); 
 
         Fixed(const Fixed &copy);
         
