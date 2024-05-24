@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 20:18:40 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/03 22:39:14 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:50:01 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class ScavTrap : public ClapTrap
     private:
         bool _isGuardGate;
     public:
+        ScavTrap();
         ScavTrap(std::string name);
         ~ScavTrap();
         ScavTrap(const ScavTrap &other);

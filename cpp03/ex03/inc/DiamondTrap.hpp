@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:35:33 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/20 21:13:02 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:28:09 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
     _energyPoints = ScavTrap::_energyPoints;
     _attackDamage = FragTrap::_attackDamage;
     La ultima asignacion de los valores de la clase base se hace a la clase FragTrap, ya que es la ultima clase de la que se hereda. 
-    Esto lo solucionamos creando variables estaticas en las clases ScavTrap y FragTrap,
-     y asignando los valores de la clase base a estas variables.
     
 */
 
@@ -42,6 +40,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
     private:
         std::string _name;
     public:
+        DiamondTrap();
         DiamondTrap(std::string name);
         ~DiamondTrap();
         DiamondTrap(const DiamondTrap &other);

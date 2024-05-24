@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:10:10 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/20 14:01:20 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:48:56 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int main(void) {
     std::cout << "**ATTACK**" << std::endl;
     //a->attack("Player2");
    // b->takeDamage(a->getAttackDamage());
-    b->beRepaired(5);
-    b->attack("Player1");
+    b->beRepaired(0);
+    b->attack("Unknown enemy");
     //a->setAttackDamage(5);
     //a->attack("Player2");
     //b->takeDamage(a->getAttackDamage());
-    b->beRepaired(10);
+    b->beRepaired(0);
     b->whoAmI();
         
     std::cout << std::endl;

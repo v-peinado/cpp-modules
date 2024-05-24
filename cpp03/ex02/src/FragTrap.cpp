@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:06:30 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/05 15:03:45 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:35:34 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 /* CONSTRUCTOR */
 
+FragTrap::FragTrap() : ClapTrap() {
+    this->_name = "FragTrap";
+    this->_hitpoints = 100;
+    this->_energyPoints = 100;
+    this->_attackDamage = 30;
+    std::cout << "FragTrap " << _name << " has been created" << std::endl;
+}
+
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
-    std::cout << "FragTrap " << _name << " is ready to fight!" << std::endl;
+    std::cout << "FragTrap " << _name << " has been created" << std::endl;
     this->_hitpoints = 100;
     this->_energyPoints = 100;
     this->_attackDamage = 30;

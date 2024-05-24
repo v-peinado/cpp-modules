@@ -6,13 +6,23 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:35:29 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/20 21:26:54 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:30:23 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 /* CONSTRUCTORS */
+
+DiamondTrap::DiamondTrap() : ClapTrap("DiamondTrap_clap_name"), ScavTrap("DiamondTrap"), FragTrap("DiamondTrap")
+{
+    _name = "DiamondTrap";
+    this->_attackDamage = FragTrap::getValue("attack damage");
+    this->_hitpoints = FragTrap::getValue("hitpoints");
+    this->_energyPoints = ScavTrap::getValue("energy points");
+    
+    std::cout << "DiamondTrap " << _name << " is here!" << std::endl;
+}
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
 {

@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 20:53:34 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/21 03:58:56 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:30:59 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 /*****************
 ** Constructors **
 *****************/
+
+ScavTrap::ScavTrap() : ClapTrap()
+{
+    std::cout << "ScavTrap " << this->_name << " has been created." << std::endl;
+    this->_hitpoints = 100;
+    this->_energyPoints = 50;
+    this->_attackDamage = 20;
+    this->_isGuardGate = false;
+    this->_scavHitpoints = this->_hitpoints;
+    this->_scavEnergyPoints = this->_energyPoints;
+    this->_scavAttackDamage = this->_attackDamage;
+}
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) 
 {

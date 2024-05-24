@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:10:07 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/20 19:44:28 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:46:34 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 /*****************
 ** Constructors **
 *****************/
+
+ClapTrap::ClapTrap() : _name("ClapTrap"), _hitpoints(10), _energyPoints(10), _attackDamage(0)
+{
+    std::cout << "ClapTrap " << _name << " has been created" << std::endl;
+}
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitpoints(10), _energyPoints(10), _attackDamage(0)
 {
@@ -66,7 +71,7 @@ void ClapTrap::attack(std::string const &target)
     std::cout << "ClapTrap " << _name << " have " << _energyPoints << " energy points"<< std::endl;
 }
 
-void ClapTrap::takeDamage(unsigned int amount)
+void ClapTrap::takeDamage(int amount)
 {
     if(_hitpoints < 1)
     {
@@ -88,7 +93,7 @@ void ClapTrap::takeDamage(unsigned int amount)
     std::cout << "ClapTrap " << _name << " has " << _hitpoints << " hitpoints" << std::endl;
 }
 
-void ClapTrap::beRepaired(unsigned int amount)
+void ClapTrap::beRepaired(int amount)
 {
     if(_hitpoints < 1)
     {
@@ -105,7 +110,7 @@ void ClapTrap::beRepaired(unsigned int amount)
         std::cout << "ClapTrap " << _name << " takes no healing" << std::endl;
         return;
     }
-    if(_hitpoints + amount > 10)
+    if(_hitpoints + amount > _hitpoints)
     {
         std::cout << "ClapTrap " << _name << " is being repaired for " << 10 - _hitpoints << " points of health!" << std::endl;
         amount = 10 - _hitpoints;
@@ -117,7 +122,7 @@ void ClapTrap::beRepaired(unsigned int amount)
             std::cout << "ClapTrap " << _name << " run out of energy" << std::endl;
         return;
     }
-    if(_hitpoints + amount <= 10)
+    if(_hitpoints + amount <= _hitpoints)
     {
         std::cout << "ClapTrap " << _name << " is being repaired for " << amount + _hitpoints << " points of health!" << std::endl;
         _hitpoints += amount;

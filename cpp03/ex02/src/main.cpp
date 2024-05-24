@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:10:10 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/05 15:05:26 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:59:50 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int main(void) {
     FragTrap *b = new FragTrap("Player2");
     
     std::cout << std::endl; 
+
+    std::cout << "**GET VALUES**" << std::endl;
+    b->getValues();
+    std::cout << std::endl;
     
     std::cout << "**ATTACK**" << std::endl;
     a->attack("Player2");

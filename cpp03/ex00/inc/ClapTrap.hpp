@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:10:13 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/04/19 22:17:41 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:52:16 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class ClapTrap
         int _energyPoints;
         int _attackDamage;
     public:
+        ClapTrap();
         ClapTrap(std::string name);
         ~ClapTrap();
         ClapTrap(const ClapTrap &other);
@@ -33,6 +34,7 @@ class ClapTrap
         void beRepaired(unsigned int amount);
         void setAttackDamage(int damage);
         int getAttackDamage();   
+        void getValues();
 };
 
 

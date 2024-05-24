@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:10:07 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/03 22:39:06 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:56:16 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 /*****************
 ** Constructors **
 *****************/
+
+ClapTrap::ClapTrap() : _name("ClapTrap"), _hitpoints(10), _energyPoints(10), _attackDamage(0)
+{
+    std::cout << "ClapTrap " << _name << " has been created" << std::endl;
+}
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitpoints(10), _energyPoints(10), _attackDamage(0)
 {
@@ -145,4 +150,12 @@ void ClapTrap::setAttackDamage(int damage)
 int ClapTrap::getAttackDamage()
 {
     return _attackDamage;
+}
+
+void ClapTrap::getValues()
+{
+    std::cout << "Name: " << _name << std::endl;
+    std::cout << "Hitpoints: " <<  _hitpoints << std::endl;
+    std::cout << "Energy Points: " << _energyPoints << std::endl;
+    std::cout << "Attack Damage: " << _attackDamage << std::endl;
 }

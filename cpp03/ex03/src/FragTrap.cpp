@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:06:30 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/21 03:56:27 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:34:23 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,25 @@
 
 /* CONSTRUCTOR */
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name) {
-    std::cout << "FragTrap " << _name << " is ready to fight!" << std::endl;
+FragTrap::FragTrap() : ClapTrap() {
+    this->_name = "FragTrap";
     this->_hitpoints = 100;
     this->_energyPoints = 100;
     this->_attackDamage = 30;
     this->_fragHitpoints = this->_hitpoints;
     this->_fragEnergyPoints = this->_energyPoints;
     this->_fragAttackDamage = this->_attackDamage;
+    std::cout << "FragTrap " << _name << " has been created" << std::endl;
+}
+
+FragTrap::FragTrap(std::string name) : ClapTrap(name) {
+    this->_hitpoints = 100;
+    this->_energyPoints = 100;
+    this->_attackDamage = 30;
+    this->_fragHitpoints = this->_hitpoints;
+    this->_fragEnergyPoints = this->_energyPoints;
+    this->_fragAttackDamage = this->_attackDamage;
+    std::cout << "FragTrap " << _name << " has been created" << std::endl;
 }
 
 /* DESTRUCTOR */
