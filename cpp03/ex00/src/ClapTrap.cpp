@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:10:07 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/05/24 17:51:38 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/05/26 01:01:38 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,30 +108,6 @@ void ClapTrap::beRepaired(unsigned int amount)
     if(amount < 1)
     {
         std::cout << "ClapTrap " << _name << " takes no healing" << std::endl;
-        return;
-    }
-    if(_hitpoints + amount > 10)
-    {
-        std::cout << "ClapTrap " << _name << " is being repaired for " << 10 - _hitpoints << " points of health!" << std::endl;
-        amount = 10 - _hitpoints;
-        _hitpoints += amount;
-        _energyPoints--;
-        std::cout << "ClapTrap " << _name << " have " << _energyPoints << " energy points"<< std::endl;
-        std::cout << "ClapTrap " << _name << " is fully healed!" << std::endl;
-        if(_energyPoints < 1)
-            std::cout << "ClapTrap " << _name << " run out of energy" << std::endl;
-        return;
-    }
-    if(_hitpoints + amount <= 10)
-    {
-        std::cout << "ClapTrap " << _name << " is being repaired for " << amount + _hitpoints << " points of health!" << std::endl;
-        _hitpoints += amount;
-        _energyPoints--;
-        std::cout << "ClapTrap " << _name << " have " << _energyPoints << "energy points"<< std::endl;
-        if(_hitpoints == 10)
-            std::cout << "ClapTrap " << _name << " is fully healed!" << std::endl;
-        if(_energyPoints < 1)
-            std::cout << "ClapTrap " << _name << " run out of energy" << std::endl;
         return;
     }
     std::cout << "ClapTrap " << _name << " is being repaired for " << amount << " points of health!" << std::endl;
