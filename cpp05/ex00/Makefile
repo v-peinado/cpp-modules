@@ -10,7 +10,7 @@ RED		= 	\033[31m
 NAME	= buro
 #Compiler
 CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
+CFLAGS	= -Wall -Wextra -Werror -std=c++98
 #CFLAGS	+= -g3 -fsanitize=address
 RM		= rm -f
 
