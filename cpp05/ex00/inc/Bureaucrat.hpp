@@ -1,8 +1,8 @@
 #ifndef BURO_HPP
 #define BURO_HPP
 
-#define HIGH 150
-#define LOW 1
+#define HIGH 1
+#define LOW 150
 
 #include <iostream>
 #include <string>
@@ -22,7 +22,7 @@ class Bureaucrat {
         /*  Getters  */
 
         int getGrade() const;
-        const std::string& getName() const;
+        const std::string getName() const;
 
         /*   Member functions  */
 
