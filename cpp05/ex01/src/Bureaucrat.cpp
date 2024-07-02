@@ -1,3 +1,4 @@
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 /***************
@@ -75,6 +76,18 @@ void Bureaucrat::decrementGrade(int grades) {
         throw Bureaucrat::GradeTooLowException();
     else
         this->_grade += grades;
+}
+
+void Bureaucrat::signForm(Form &Form) {
+    if(Form.getSigned())
+        throw Form::FormIsSignedException();
+    else if(this->_grade > Form.getGradeToSign())
+        throw Form::GradeTooLowException();
+    else
+    {
+        Form.beSigned(*this);
+    }
+    
 }
 
 /********************

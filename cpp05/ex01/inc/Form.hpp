@@ -1,16 +1,22 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
+#define HIGH 1
+#define LOW 150
+
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form {
     private:
-        const std::string _name;
+        std::string _name;
         bool _isSigned;
-        const int _requiredToSign;
-        const int _requiredToExec;
+        int _requiredToSign;
+        int _requiredToExec;
         Form();
     public:
         Form(std::string name, int toSign, int toExec);
@@ -21,9 +27,9 @@ class Form {
         /*  Getters  */
 
         const std::string getName() const;
-        const bool getSigned() const;
-        const int getGradeToSign() const;
-        const int getGradeToSign() const;
+        bool getSigned() const;
+        int getGradeToSign() const;
+        int getGradeToExec() const;
 
         /* Member function */
 
@@ -31,7 +37,21 @@ class Form {
 
         /* Exceptions */
 
-        
+        class GradeTooLowException : public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
+
+        class GradeTooHighException : public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
+
+        class FormIsSignedException : public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
+
 };
 
 std::ostream& operator<<(std::ostream& outstream, const Form &Form);

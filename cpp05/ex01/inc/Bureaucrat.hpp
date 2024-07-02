@@ -7,6 +7,9 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
     private:
@@ -29,6 +32,7 @@ class Bureaucrat {
         //friend std::ostream &operator<<(std::ostream &outstream, const Bureaucrat &rhs);
         void incrementGrade(int grades);
         void decrementGrade(int grades);
+        void signForm(Form &Form);
 
         /*  Exception classes  */
 
