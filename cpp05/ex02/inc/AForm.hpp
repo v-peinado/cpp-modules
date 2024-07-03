@@ -24,7 +24,7 @@ class AForm {
 
         /*  Getters  */
 
-        const std::string getName() const;
+        std::string getName() const;
         bool getSigned() const;
         int getGradeToSign() const;
         int getGradeToExec() const;

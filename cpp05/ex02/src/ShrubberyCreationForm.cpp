@@ -41,7 +41,7 @@ std::ostream &operator<<(std::ostream &outstream, const ShrubberyCreationForm &r
     return outstream;
 }
 
-const std::string ShrubberyCreationForm::getTarget() const {
+std::string ShrubberyCreationForm::getTarget() const {
     return this->_target;
 }
 

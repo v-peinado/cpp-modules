@@ -26,6 +26,15 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) {
 /********************
 * Operators overload *
 ********************/
+
+/*
+    En C++, es una práctica común devolver una referencia al objeto actual 
+    (es decir, *this) desde el operador de asignación (operator=), es una convención bien 
+    establecida que el operador de asignación devuelva una referencia.
+    Devolver una referencia evita la creación de una copia adicional del objeto,
+    lo que puede ser costoso en términos de rendimiento y uso de memoria.
+
+*/
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
     std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
@@ -59,7 +68,7 @@ int Bureaucrat::getGrade() const {
     return this->_grade;
 }
 
-const std::string Bureaucrat::getName() const {
+std::string Bureaucrat::getName() const {
     return this->_name;
 }
 

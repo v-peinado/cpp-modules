@@ -25,7 +25,7 @@ class Bureaucrat {
         /*  Getters  */
 
         int getGrade() const;
-        const std::string getName() const;
+        std::string getName() const;
 
         /*   Member functions  */
 

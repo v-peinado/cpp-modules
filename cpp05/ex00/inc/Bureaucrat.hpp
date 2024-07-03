@@ -20,9 +20,9 @@ class Bureaucrat {
         Bureaucrat &operator=(const Bureaucrat &rhs);
 
         /*  Getters  */
-
+        /*Al retornar valores y no punteros o referencias es innecesario poner const int o const std::string*/
         int getGrade() const;
-        const std::string getName() const;
+        std::string getName() const;
 
         /*   Member functions  */
 

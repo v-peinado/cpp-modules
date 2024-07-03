@@ -44,7 +44,7 @@ std::ostream &operator<<(std::ostream &outstream, const PresidentialPardonForm &
     return outstream;
 }
 
-const std::string PresidentialPardonForm::getTarget() const {
+std::string PresidentialPardonForm::getTarget() const {
     return this->_target;
 }
 

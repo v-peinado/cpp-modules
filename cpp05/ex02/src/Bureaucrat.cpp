@@ -36,17 +36,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
     }
     return *this;
 }
-/*
-    La clase ostream, permite la sobrecarga del operador  <<, modificando el flujo de salida
-    de tal manera que cada vez que usemos << con cualquier objeto Bureaucrat obtendremos una salida personalizada
-    La sobrecarga del operador de inserción (<<) para std::ostream no se puede declarar como un miembro de una clase porque 
-    el primer operando de la sobrecarga debe ser un std::ostream,
-    y en C++, el primer operando de un operador sobrecargado siempre es el objeto de la 
-    clase si el operador se define como un miembro de la clase.
 
-    Si podriamos declararla como funcion amiga dentro de la clase y podria acceder a miembros privados y protegidos,
-    pudiendo prescindir de los getters.
-*/
 std::ostream &operator<<(std::ostream &outstream, const Bureaucrat &rhs) {
     outstream << rhs.getName() << ", bureaucrat grade " << rhs.getGrade();
     return outstream;
@@ -60,7 +50,7 @@ int Bureaucrat::getGrade() const {
     return this->_grade;
 }
 
-const std::string Bureaucrat::getName() const {
+std::string Bureaucrat::getName() const {
     return this->_name;
 }
 

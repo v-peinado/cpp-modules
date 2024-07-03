@@ -46,7 +46,7 @@ std::ostream &operator<<(std::ostream &outstream, const RobotomyRequestForm &rhs
     return outstream;
 }
 
-const std::string RobotomyRequestForm::getTarget() const {
+std::string RobotomyRequestForm::getTarget() const {
     return this->_target;
 }
 /********************

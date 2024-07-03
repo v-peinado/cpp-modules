@@ -55,7 +55,7 @@ std::ostream &operator<<(std::ostream &outstream, const AForm &rhs) {
 * Member functions *
 *******************/
 
-const std::string AForm::getName() const {
+std::string AForm::getName() const {
     return this->_name;
 }
 
