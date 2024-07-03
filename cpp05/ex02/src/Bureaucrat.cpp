@@ -12,15 +12,15 @@ Bureaucrat::Bureaucrat(std::string name, int lvl) : _name(name) {
         throw Bureaucrat::GradeTooHighException();
     else
         this->_grade = lvl;
-    std::cout << "Bureaucrat " << _name << " has been created" << std::endl;
+    //std::cout << "Bureaucrat " << _name << " has been created" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat() {
-    std::cout << "Bureaucrat " << _name << " has been destroyed" << std::endl;
+    //std::cout << "Bureaucrat " << _name << " has been destroyed" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) {
-    std::cout << "Copy constructor called" << std::endl;
+    //std::cout << "Copy constructor called" << std::endl;
     *this = other;
 }
 
@@ -28,7 +28,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) {
 * Operators overload *
 ********************/
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
-    std::cout << "Asignation operator called" << std::endl;
+    //std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
         this->_name = rhs._name;

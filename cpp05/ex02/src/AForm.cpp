@@ -12,15 +12,15 @@ AForm::AForm(std::string name, int toSign, int toExec) : _name(name), _isSigned(
         throw AForm::GradeTooLowException();
     this->_requiredToSign = toSign;
     this->_requiredToExec = toExec;
-    std::cout << "AForm " << this->_name << " has been created" << std::endl;
+    //std::cout << "AForm " << this->_name << " has been created" << std::endl;
 }
 
 AForm::~AForm() {
-    std::cout << "AForm " << this->_name << " has been destroyed" << std::endl;
+    //std::cout << "AForm " << this->_name << " has been destroyed" << std::endl;
 }
 
 AForm::AForm(const AForm &other) {
-    std::cout << "Copy constructor called" << std::endl;
+    //std::cout << "Copy constructor called" << std::endl;
     *this = other;
 }
 
@@ -29,7 +29,7 @@ AForm::AForm(const AForm &other) {
 ********************/
 
 AForm &AForm::operator=(const AForm &rhs) {
-    std::cout << "Asignation operator called" << std::endl;
+    //std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
         this->_name = rhs._name;
@@ -71,6 +71,8 @@ bool AForm::getSigned() const {
     return this->_isSigned;
 }
 
+
+
 void AForm::beSigned(Bureaucrat &Bureaucrat) {
     if(this->_isSigned)
         throw AForm::FormIsSignedException();
@@ -78,7 +80,6 @@ void AForm::beSigned(Bureaucrat &Bureaucrat) {
         throw AForm::GradeTooLowException();
     else
     {
-        std::cout << "A confirmation:" << std::endl;
         std::cout << "The bureaucrat " << Bureaucrat.getName();
         std::cout << " sign Form " << getName() << std::endl;
         this->_isSigned = true;
@@ -113,5 +114,5 @@ const char* AForm::FormIsSignedException::what() const throw() {
 }
 
 const char* AForm::FormNotSigned::what() const throw() {
-    return "FormNotSigned: Form already signed";
+    return "FormNotSigned: Form not signed";
 }

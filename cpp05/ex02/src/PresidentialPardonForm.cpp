@@ -32,6 +32,22 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
     return *this;
 }
 
+std::ostream &operator<<(std::ostream &outstream, const PresidentialPardonForm &rhs) {
+    outstream << "Form: " << rhs.getName() << std::endl;
+    outstream << "Grade requiered to sign: " << rhs.getGradeToSign() << std::endl;
+    outstream << "Grade requiered to exec: " << rhs.getGradeToExec() << std::endl;
+    outstream << "Target: " << rhs.getTarget() << std::endl;
+    if(rhs.getSigned())
+        outstream << "Form " << rhs.getName() << " SIGNED" << std::endl;
+    else
+        outstream << "Form " << rhs.getName() << " NOT SIGNED" << std::endl;
+    return outstream;
+}
+
+const std::string PresidentialPardonForm::getTarget() const {
+    return this->_target;
+}
+
 /********************
 * Virtual functions *
 ********************/
