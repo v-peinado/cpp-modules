@@ -33,6 +33,8 @@ class Bureaucrat {
         void incrementGrade(int grades);
         void decrementGrade(int grades);
         void signForm(AForm &AForm);
+        void executeForm(AForm const &AForm);
+
 
         /*  Exception classes  */
 

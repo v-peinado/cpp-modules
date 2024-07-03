@@ -9,8 +9,6 @@
 #include <exception>
 #include "Bureaucrat.hpp"
 
-class Bureaucrat;
-
 class AForm {
     private:
         std::string _name;
@@ -31,9 +29,16 @@ class AForm {
         int getGradeToSign() const;
         int getGradeToExec() const;
 
+        /*  Setters  */
+
+        void setName(std::string name);
+        void setGradeExec(int grade);
+        void setGradeSign(int grade);
+
         /* Member function */
 
         void beSigned(Bureaucrat& Bureaucrat);
+        virtual void execute(Bureaucrat const & executor) const = 0;
 
         /* Exceptions */
 
@@ -52,6 +57,10 @@ class AForm {
                 virtual const char *what() const throw();
         };
 
+        class FormNotSigned : public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
 };
 
 std::ostream& operator<<(std::ostream& outstream, const AForm &AForm);

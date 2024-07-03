@@ -85,19 +85,33 @@ void AForm::beSigned(Bureaucrat &Bureaucrat) {
     }
 }
 
+void AForm::setName(std::string name) {
+    this->_name = name;
+}
+void AForm::setGradeExec(int grade){
+    this->_requiredToExec = grade;
+}
+
+void AForm::setGradeSign(int grade){
+    this->_requiredToSign = grade;
+}
+
 /********************
 * Virtual functions *
 ********************/
 
 const char* AForm::GradeTooHighException::what() const throw() {
-    return "Grade too high";
+    return "GradeTooHighException: Grade too high";
 }
 
 const char* AForm::GradeTooLowException::what() const throw() {
-    return "Grade too low";
+    return "GradeTooLowException: Grade too low";
 }
 
 const char* AForm::FormIsSignedException::what() const throw() {
-    return "Form already signed";
+    return "FormIsSignedException: Form already signed";
 }
 
+const char* AForm::FormNotSigned::what() const throw() {
+    return "FormNotSigned: Form already signed";
+}
