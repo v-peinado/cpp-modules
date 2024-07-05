@@ -45,14 +45,11 @@ AForm * Intern::makeForm(std::string name, std::string target) {
     switch (i)
     {
         case 0:
-            return new RobotomyRequestForm(target);
-            break;
-        case 1:
             return new PresidentialPardonForm(target);
-            break;
+        case 1:
+            return new RobotomyRequestForm(target);
         case 2:
-            return new ShrubberyCreationForm(target); 
-            break;           
+            return new ShrubberyCreationForm(target);            
         default:
             throw Intern::BadNameException();
     }
