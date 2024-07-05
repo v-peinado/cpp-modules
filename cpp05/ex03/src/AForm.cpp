@@ -71,8 +71,6 @@ bool AForm::getSigned() const {
     return this->_isSigned;
 }
 
-
-
 void AForm::beSigned(Bureaucrat &Bureaucrat) {
     if(this->_isSigned)
         throw AForm::FormIsSignedException();
