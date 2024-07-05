@@ -4,71 +4,25 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int main(void) {
+    Intern RandomIntern;
     std::cout << "===========================" << std::endl;
-    std::cout << "Create forms and bureacrats" << std::endl;
+    std::cout << "      Bad name exception   " << std::endl;
     std::cout << "===========================" << std::endl;
 
-    Bureaucrat a("(O_O)", 9);
-    PresidentialPardonForm b("PPF_Target");
-    RobotomyRequestForm c("RRF_Target");
-    ShrubberyCreationForm d("SCF_Target");
-
-    std::cout << std::endl;
-    std::cout << "============================" << std::endl;
-    std::cout << "Overload of the («) operator" << std::endl;
-    std::cout << "============================" << std::endl;
-
-    std::cout << b << std::endl;
-    std::cout << c << std::endl;
-    std::cout << d << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "============================" << std::endl;
-    std::cout << "       Form not signed      " << std::endl;
-    std::cout << "============================" << std::endl;
-
     try
     {
-        b.execute(a);
+        AForm* rrf;
+        rrf = RandomIntern.makeForm("robotomy request", "Bender");
+        delete rrf;            
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << std::endl;
         std::cout << std::endl;
-    }
-    
-    std::cout << "============================" << std::endl;
-    std::cout << "       Low to exec          " << std::endl;
-    std::cout << "============================" << std::endl;
-    
-    try
-    {
-        Bureaucrat x("(O_O)", 50);
-        b.beSigned(x);
-        b.execute(x);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-        std::cout << std::endl;
-    }
-
-    std::cout << "============================" << std::endl;
-    std::cout << "       Low to sign          " << std::endl;
-    std::cout << "============================" << std::endl;
-    
-    try
-    {
-        c.beSigned(a);
-        c.execute(a);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-        std::cout << std::endl;
-    }
+    }  
 
     std::cout << "============================" << std::endl;
     std::cout << "         PPF ALL OK         " << std::endl;
@@ -76,11 +30,13 @@ int main(void) {
 
     try
     {
+        AForm* ppf;
+        ppf = RandomIntern.makeForm("Presidential", "Bender"); 
         Bureaucrat ert("(O_O)", 1);
-        PresidentialPardonForm ok_form("PPF_Target");
-        ok_form.beSigned(ert);
-        ok_form.execute(ert);
-        std::cout << std::endl;
+        ppf->beSigned(ert);
+        ppf->execute(ert);
+        delete ppf; 
+        std::cout << std::endl;  
     }
     catch(const std::exception& e)
     {
@@ -95,11 +51,13 @@ int main(void) {
 
     try
     {
+        AForm* rrf;
+        rrf = RandomIntern.makeForm("Robotomy", "Bender"); 
         Bureaucrat ert("(O_O)", 1);
-        RobotomyRequestForm ok_form("PPF_Target");
-        ok_form.beSigned(ert);
-        ok_form.execute(ert);
-        std::cout << std::endl;
+        rrf->beSigned(ert);
+        rrf->execute(ert);
+        delete rrf; 
+        std::cout << std::endl;  
     }
     catch(const std::exception& e)
     {
@@ -113,11 +71,13 @@ int main(void) {
 
     try
     {
+        AForm* scf;
+        scf = RandomIntern.makeForm("Shrubbery", "Bender"); 
         Bureaucrat ert("(O_O)", 1);
-        ShrubberyCreationForm ok_form("PPF_Target");
-        ok_form.beSigned(ert);
-        ok_form.execute(ert);
-        std::cout << std::endl;
+        scf->beSigned(ert);
+        scf->execute(ert);
+        delete scf; 
+        std::cout << std::endl;  
     }
     catch(const std::exception& e)
     {
