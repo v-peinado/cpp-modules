@@ -5,6 +5,16 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+/*
+    Crearemos clases derivadas de AForm, que serán los formularios que se pueden firmar y ejecutar.
+    Estos formularios tendrán un objetivo, que será el objetivo de la acción que se realizará al ejecutar el formulario.
+    Cada formulario tendrá un método execute que realizará la acción que se espera de él.
+    El subject deja claro que las propiedades que se heredan deben heredarse en privado, en la herencia publica
+    se heredan los metodos publicos y protegidos, pero no los privados, por lo que deberemos acceder a ellos mediante
+    metodos get y set, de la clase base, recordando que cada vez que se instancia una clase derivada, se instancia
+    tambien la clase base.
+*/
+
 int main(void) {
     std::cout << "===========================" << std::endl;
     std::cout << "Create forms and bureacrats" << std::endl;

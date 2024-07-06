@@ -4,7 +4,7 @@
     Una excepcion es un mecanismo que permite manejar errores en tiempo de ejecución, 
     sin interrumpir el flujo normal del programa. Proporcionan una manera estructurada de
     gestionar errores y permiten separar el código de manejo de errores del código normal.
-    Hay varios tipos de excepciones(derivadas de std::exception, ejemplo std::runtime_error), 
+    Hay varios tipos de excepciones(derivadas de std::exception, ejemplo std::runtime_error, std::logic_error, etc.), 
     pero en este caso se usan las excepciones de la libreria estandar std::exception
     y se personalizan para el caso de la clase Bureaucrat, creando dos clases hijas de std::exception.
     
@@ -15,6 +15,10 @@
     La idea es que todo codigo que pueda producir excepciones se ejecute dentro de un bloque try and catch.
     Si una excepcion no esta dentro de un bloque try and catch, se lanzara una excepcion no capturada y se llamara a std::terminate
     y se terminara el programa, posiblemnte con un volcado de memoria.
+
+    Utilizaremos el bloque try and catch para capturar las excepciones que se lanzan al intentar crear
+    un Bureaucrat con parametros que consideramos indeseables, para eso usaremos la palabra throw para lanzar la excepcion
+    y catch para capturarla.
 */
 
 int main(void) {
