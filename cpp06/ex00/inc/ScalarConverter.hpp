@@ -9,13 +9,14 @@ class ScalarConverter {
     private:
 
         ScalarConverter();
-        ScalarConverter(ScalarConverter const &other);
+        ScalarConverter(const ScalarConverter &other);
         ~ScalarConverter();
-        ScalarConverter & operator=(ScalarConverter const & rhs);
+        ScalarConverter &operator=(const ScalarConverter &rhs);
 
     public:
     
         static void convert(std::string const &ref);
+        static std::string getType(std::string const &ref);
 
         class ImpossibleConversionException : public std::exception {
             public:

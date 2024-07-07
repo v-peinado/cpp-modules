@@ -5,7 +5,13 @@ int main(int argc, char **argv) {
     {
         std::cerr << "Usage: ./convert [value]" << std::endl;
         return 1;
-    }     
+    }
+
+    /*
+    Comprobamos que no puede instanciarse un objeto de la clase
+    ScalarConverter sc = new ScalarConverter();
+    */
+        
     try
     {   
         //std::string input = argv[1];
