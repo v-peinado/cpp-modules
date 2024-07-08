@@ -40,7 +40,7 @@ const char *ScalarConverter::ImpossibleConversionException::what() const throw()
 * Parse - Member functions *
 ***************************/
 
-bool ScalarConverter::isInt(std::string const &ref)
+bool isInt(std::string const &ref)
 {
     size_t i = 0;
     if(ref[i] == '+' || ref[i] == '-')
@@ -51,7 +51,7 @@ bool ScalarConverter::isInt(std::string const &ref)
     return true;
 }
 
-bool ScalarConverter::isFloat(std::string const &ref)
+bool isFloat(std::string const &ref)
 {
     size_t i = 0;
     bool point = false;
@@ -72,7 +72,7 @@ bool ScalarConverter::isFloat(std::string const &ref)
     return true;
 }
 
-bool ScalarConverter::isDouble(std::string const &ref)
+bool isDouble(std::string const &ref)
 {
     size_t i = 0;
     bool point = false;
@@ -92,7 +92,7 @@ bool ScalarConverter::isDouble(std::string const &ref)
     return true;
 }
 
-std::string ScalarConverter::getType(std::string const &ref)
+std::string getType(std::string const &ref)
 {
     std::string type;
 
@@ -102,11 +102,11 @@ std::string ScalarConverter::getType(std::string const &ref)
         type = "pseudo_d";
     else if(ref.length() == 1 && !isdigit(ref[0]))
         type = "char";
-    else if(ScalarConverter::isInt(ref))
+    else if(isInt(ref))
         type = "int";
-    else if(ScalarConverter::isFloat(ref))
+    else if(isFloat(ref))
         type = "float";
-    else if(ScalarConverter::isDouble(ref))
+    else if(isDouble(ref))
         type = "double";
     else
         type = "impossible";
@@ -129,7 +129,7 @@ std::string ScalarConverter::getType(std::string const &ref)
     ya que el rango de char estan muy por debajo del rango de int, nunca se produciria
     un overflow o underflow.
 */
-void ScalarConverter::printChar(std::string const &ref)
+void printChar(std::string const &ref)
 {
     char c = ref[0];
     if(isprint(c))
@@ -141,7 +141,7 @@ void ScalarConverter::printChar(std::string const &ref)
     std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
 }
 
-void ScalarConverter::printInt(std::string const &ref)
+void printInt(std::string const &ref)
 {
     /*
         Para convertir un string a un int, usamos istringstream
@@ -184,7 +184,7 @@ void ScalarConverter::printInt(std::string const &ref)
     }
 }
 
-void ScalarConverter::printFloat(std::string const &ref)
+void printFloat(std::string const &ref)
 {
     float f;
     int i;
@@ -217,7 +217,7 @@ void ScalarConverter::printFloat(std::string const &ref)
 		std::cout << "double: " << d << std::endl;  
 }
 
-void ScalarConverter::printDouble(std::string const &ref)
+void printDouble(std::string const &ref)
 {
     float f;
     int i;
@@ -250,7 +250,7 @@ void ScalarConverter::printDouble(std::string const &ref)
 		std::cout << "double: " << d << std::endl;
 }
 
-void ScalarConverter::printPseudoDouble(std::string const &ref)
+void printPseudoDouble(std::string const &ref)
 {
     std::cout << "char: Impossible"	<< std::endl;
 	std::cout << "int: Impossible" << std::endl;
@@ -258,7 +258,7 @@ void ScalarConverter::printPseudoDouble(std::string const &ref)
 	std::cout << "double: " << ref << std::endl;	
 }
 
-void ScalarConverter::printPseudoFloat(std::string const &ref)
+void printPseudoFloat(std::string const &ref)
 {
     std::cout << "char: Impossible"	<< std::endl;
     std::cout << "int: Impossible" << std::endl;
@@ -272,7 +272,7 @@ void ScalarConverter::printPseudoFloat(std::string const &ref)
 
 void ScalarConverter::convert(std::string const &ref)
 {
-    std::string type = ScalarConverter::getType(ref);
+    std::string type = getType(ref);
     std::string types[] = { "char", "int", "float", "double", "pseudo_f", "pseudo_d", "impossible"};
     int i = 0;
     for(i = 0; i < 7; i++)
@@ -281,22 +281,22 @@ void ScalarConverter::convert(std::string const &ref)
     switch (i)
     {
         case 0:
-            ScalarConverter::printChar(ref);
+            printChar(ref);
             break;
         case 1:
-            ScalarConverter::printInt(ref);
+            printInt(ref);
             break;
         case 2:
-            ScalarConverter::printFloat(ref);
+            printFloat(ref);
             break;
         case 3:
-            ScalarConverter::printDouble(ref);
+            printDouble(ref);
             break;
         case 4:
-            ScalarConverter::printPseudoFloat(ref);
+            printPseudoFloat(ref);
             break;
         case 5:
-            ScalarConverter::printPseudoDouble(ref);
+            printPseudoDouble(ref);
             break;
         default:
             throw ScalarConverter::ImpossibleConversionException();
