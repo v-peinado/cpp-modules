@@ -9,6 +9,9 @@
     de float a int, si el valor supera el rango de int, esto no se detecta en tiempo de compilación, es un error
     que el programador tiene que tener en cuenta, para que no se produzca un comportamiento indefinido en tiempo
     de ejecución.   
+
+    Si usasemos C++11 o versiones posteriores, puedes utilizar funciones como std::stoi, std::stol, std::stoll, etc.,
+     que lanzan una excepción std::out_of_range si el valor está fuera del rango del tipo de datos objetivo.
 */
 
 int main(int argc, char **argv) {
