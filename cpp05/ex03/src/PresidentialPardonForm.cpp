@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 18:10:01 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/09 18:10:02 by vpeinado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
 
@@ -10,14 +22,16 @@
     para la asignacion
 */
 PresidentialPardonForm::PresidentialPardonForm(std::string target) 
-    : AForm("PresidentialPardonForm", 72, 45), _target(target) {}
+    : AForm("PresidentialPardonForm", 72, 45) {
+        this->setTarget(target);
+    }
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other)
     : AForm(other.getName(), other.getGradeToSign(), other.getGradeToExec()) {
     std::cout << "Copy constructor called" << std::endl;
-    this->_target = other._target;    
+    this->setTarget(other.getTarget());    
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &rhs) {
@@ -27,7 +41,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
         this->setName(rhs.getName());
         this->setGradeExec(rhs.getGradeToExec());
         this->setGradeSign(rhs.getGradeToSign());
-        this->_target = rhs._target;
+        this->setTarget(rhs.getTarget());
     }
     return *this;
 }
@@ -44,10 +58,6 @@ std::ostream &operator<<(std::ostream &outstream, const PresidentialPardonForm &
     return outstream;
 }
 
-std::string PresidentialPardonForm::getTarget() const {
-    return this->_target;
-}
-
 /********************
 * Virtual functions *
 ********************/
@@ -59,5 +69,5 @@ void PresidentialPardonForm::execute(Bureaucrat const& executor) const
 	else if (!this->getSigned())
 		throw PresidentialPardonForm::FormNotSigned();
     else
-	    std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+	    std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

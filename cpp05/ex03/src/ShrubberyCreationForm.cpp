@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 18:10:11 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/09 18:10:12 by vpeinado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
 #include <fstream>
@@ -7,14 +19,16 @@
 ***************/
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) 
-    : AForm("ShrubberyCreationForm", 145, 137), _target(target) {}
+    : AForm("ShrubberyCreationForm", 145, 137) {
+        this->setTarget(target);
+    }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
     : AForm(other.getName(), other.getGradeToSign(), other.getGradeToExec()) {
     std::cout << "Copy constructor called" << std::endl;
-    this->_target = other._target;    
+    this->setTarget(other.getTarget());    
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs) {
@@ -24,7 +38,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
         this->setName(rhs.getName());
         this->setGradeExec(rhs.getGradeToExec());
         this->setGradeSign(rhs.getGradeToSign());
-        this->_target = rhs._target;
+        this->setTarget(rhs.getTarget());
     }
     return *this;
 }
@@ -41,10 +55,6 @@ std::ostream &operator<<(std::ostream &outstream, const ShrubberyCreationForm &r
     return outstream;
 }
 
-std::string ShrubberyCreationForm::getTarget() const {
-    return this->_target;
-}
-
 /********************
 * Virtual functions *
 ********************/
@@ -58,7 +68,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const& executor) const
     else
 	{
         std::ofstream out;
-    	out.open((this->_target + "_shrubbery").c_str(), std::ofstream::in | std::ofstream::trunc);
+    	out.open((this->getTarget() + "_shrubbery").c_str(), std::ofstream::in | std::ofstream::trunc);
         out << "     *\n"
             << "    ***\n"
             << "   *****\n"

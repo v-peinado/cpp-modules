@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 18:07:51 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/09 18:07:52 by vpeinado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef P_HPP
-#define P_HHP
+#define P_HPP
 
 #include <iostream>
 #include <string>
@@ -10,7 +22,6 @@ deberemos hacerlo mediante getter y setters*/
 
 class PresidentialPardonForm : public AForm {
     private:
-        std::string _target;
         PresidentialPardonForm();
     public:
         PresidentialPardonForm(std::string target);
@@ -18,7 +29,6 @@ class PresidentialPardonForm : public AForm {
         PresidentialPardonForm(const PresidentialPardonForm &other);
         PresidentialPardonForm &operator=(const PresidentialPardonForm &rhs);
 
-        std::string getTarget() const;
         void execute(Bureaucrat const & executor) const;
 };
 

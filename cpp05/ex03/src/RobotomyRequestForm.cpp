@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 18:10:06 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/09 18:10:07 by vpeinado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
 #include <cstdlib>
@@ -8,7 +20,9 @@
 ***************/
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) 
-    : AForm("RobotomyRequestForm", 25, 5), _target(target) {}
+    : AForm("RobotomyRequestForm", 25, 5) {
+        this->setTarget(target);
+    }
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
@@ -19,7 +33,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
     : AForm(other.getName(), other.getGradeToSign(), other.getGradeToExec()) {
     std::cout << "Copy constructor called" << std::endl;
-    this->_target = other._target;    
+    this->setTarget(other.getTarget());    
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs) {
@@ -29,7 +43,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &r
         this->setName(rhs.getName());
         this->setGradeExec(rhs.getGradeToExec());
         this->setGradeSign(rhs.getGradeToSign());
-        this->_target = rhs._target;
+        this->setTarget(rhs.getTarget());
     }
     return *this;
 }
@@ -46,9 +60,6 @@ std::ostream &operator<<(std::ostream &outstream, const RobotomyRequestForm &rhs
     return outstream;
 }
 
-std::string RobotomyRequestForm::getTarget() const {
-    return this->_target;
-}
 /********************
 * Virtual functions *
 ********************/
@@ -62,11 +73,11 @@ void RobotomyRequestForm::execute(Bureaucrat const& executor) const
     else
     {
         std::srand(std::time(NULL));
-        std::cout << this->_target << " has been robotomized successfully 50% of the time" << std::endl;
+        std::cout << this->getTarget() << " has been robotomized successfully 50% of the time" << std::endl;
         if(random() % 2 == 0)
             std::cout << "ERROR... robotomy failed" << std::endl;
         else
-            std::cout << this->_target << " has been robotomized" << std::endl;
+            std::cout << this->getTarget() << " has been robotomized" << std::endl;
     }
 	    
 }

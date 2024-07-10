@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 18:08:10 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/09 18:08:11 by vpeinado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
@@ -71,6 +83,10 @@ bool AForm::getSigned() const {
     return this->_isSigned;
 }
 
+std::string AForm::getTarget() const {
+    return this->_target;
+}
+
 void AForm::beSigned(Bureaucrat &Bureaucrat) {
     if(this->_isSigned)
         throw AForm::FormIsSignedException();
@@ -93,6 +109,10 @@ void AForm::setGradeExec(int grade){
 
 void AForm::setGradeSign(int grade){
     this->_requiredToSign = grade;
+}
+
+void AForm::setTarget(std::string target) {
+    this->_target = target;
 }
 
 /********************

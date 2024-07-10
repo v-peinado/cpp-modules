@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 18:08:03 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/09 18:08:04 by vpeinado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef S_HPP
-#define S_HHP
+#define S_HPP
 
 #include <iostream>
 #include <string>
@@ -7,7 +19,6 @@
 
 class ShrubberyCreationForm : public AForm {
     private:
-        std::string _target;
         ShrubberyCreationForm();
     public:
         ShrubberyCreationForm(std::string target);
@@ -15,7 +26,6 @@ class ShrubberyCreationForm : public AForm {
         ShrubberyCreationForm(const ShrubberyCreationForm &other);
         ShrubberyCreationForm &operator=(const ShrubberyCreationForm &rhs);
 
-        std::string getTarget() const;
         void execute(Bureaucrat const & executor) const;
 };
 

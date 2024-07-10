@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Intern.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 18:09:48 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/09 18:09:49 by vpeinado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Intern.hpp"
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
@@ -45,10 +57,13 @@ AForm * Intern::makeForm(std::string name, std::string target) {
     switch (i)
     {
         case 0:
+            std::cout << "PresidentialPardonForm has created" << std::endl;
             return new PresidentialPardonForm(target);
         case 1:
+            std::cout << "RobotomyRequestForm has created" << std::endl;
             return new RobotomyRequestForm(target);
         case 2:
+            std::cout << "ShrubberyCreationForm has created" << std::endl;
             return new ShrubberyCreationForm(target);            
         default:
             throw Intern::BadNameException();

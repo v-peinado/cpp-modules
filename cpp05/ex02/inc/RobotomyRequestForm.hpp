@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 18:07:58 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/09 18:07:59 by vpeinado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef R_HPP
-#define R_HHP
+#define R_HPP
 
 #include <iostream>
 #include <string>
@@ -7,7 +19,6 @@
 
 class RobotomyRequestForm : public AForm {
     private:
-        std::string _target;
         RobotomyRequestForm();
     public:
         RobotomyRequestForm(std::string target);
@@ -15,7 +26,6 @@ class RobotomyRequestForm : public AForm {
         RobotomyRequestForm(const RobotomyRequestForm &other);
         RobotomyRequestForm &operator=(const RobotomyRequestForm &rhs);
 
-        std::string getTarget() const;
         void execute(Bureaucrat const & executor) const;
 };
 

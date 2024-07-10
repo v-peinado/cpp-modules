@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 18:07:40 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/09 18:07:41 by vpeinado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FORM_HPP
 #define FORM_HPP
 
@@ -15,6 +27,7 @@ class AForm {
         bool _isSigned;
         int _requiredToSign;
         int _requiredToExec;
+        std::string _target;
         AForm();
     public:
         AForm(std::string name, int toSign, int toExec);
@@ -28,12 +41,14 @@ class AForm {
         bool getSigned() const;
         int getGradeToSign() const;
         int getGradeToExec() const;
+        std::string getTarget() const;
 
         /*  Setters  */
 
         void setName(std::string name);
         void setGradeExec(int grade);
         void setGradeSign(int grade);
+        void setTarget(std::string target);
 
         /* Member function */
 
