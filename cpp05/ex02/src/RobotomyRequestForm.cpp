@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:08:31 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:08:32 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:22:20 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void RobotomyRequestForm::execute(Bureaucrat const& executor) const
     {
         std::srand(std::time(NULL));
         std::cout << this->getTarget() << " has been robotomized successfully 50% of the time" << std::endl;
-        if(random() % 2 == 0)
+        if(std::rand() % 2 == 0)
             std::cout << "ERROR... robotomy failed" << std::endl;
         else
             std::cout << this->getTarget() << " has been robotomized" << std::endl;
