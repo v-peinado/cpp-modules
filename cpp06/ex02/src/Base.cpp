@@ -6,13 +6,20 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:24:02 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/10 14:38:09 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:21:06 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 Base::~Base() {}
+
+/*******************
+*     functions    *
+*******************/
 
 Base * generate() {
     std::srand(time(NULL));
@@ -33,3 +40,23 @@ Base * generate() {
         break;
     }
 }
+
+void identify(Base* p) {
+    if(dynamic_cast<A*>(p))
+    {
+        std::cout << "A class" << std::endl;
+        return ;
+    }
+    if(dynamic_cast<B*>(p))
+    {
+        std::cout << "B class" << std::endl;
+        return ;
+    }
+    if(dynamic_cast<C*>(p))
+    {
+        std::cout << "C class" << std::endl;
+        return ;
+    }
+    std::cerr << "Cant identify the class" << std::endl; 
+}
+
