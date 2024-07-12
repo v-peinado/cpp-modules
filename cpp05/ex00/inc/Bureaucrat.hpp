@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:06:09 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:06:17 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/12 21:20:39 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,15 @@ class Bureaucrat {
         Bureaucrat &operator=(const Bureaucrat &rhs);
 
         /*  Getters  */
-        /*Al retornar valores y no punteros o referencias es innecesario poner const int o const std::string*/
+        /*Al retornar valores y no punteros o referencias es innecesario poner const int o const std::string
+            Retornar solo valor es mas ineficiente ya que al ser una copia Requiere una copia completa del objeto,
+            lo que puede ser innecesario si solo se necesita acceder a la información, aunque C++ realiza optimizaciones
+            como RVO(Return Value Optimization) que pueden minimizar el coste de devolver objetos por valor,
+            aunque esto no aplica a todos los casos y compilers.
+            Por otra parte devolver referencia podria ser menos seguro, por lo quees recomendable devolver una referencia
+            constante (const&) si deseas eficiencia sin comprometer la seguridad.
+            
+        */
         int getGrade() const;
         std::string getName() const;
 
