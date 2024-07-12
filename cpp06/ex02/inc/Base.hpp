@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:24:51 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/10 14:32:38 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/12 13:37:42 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ class Base
 
 Base * generate(void);
 void identify(Base* p);
-void identify(Base& p);
+void identify(Base& r);
 
 #endif
