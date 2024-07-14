@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:07:03 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:07:04 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 13:02:26 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 * Constructors *
 ***************/
 
-Form::Form(std::string name, int toSign, int toExec) : _name(name), _isSigned(false) {
+Form::Form(std::string name, int toSign, int toExec) : _name(name), _isSigned(false), _requiredToSign(toSign), _requiredToExec(toExec) {
     if(toSign < HIGH || toExec < HIGH)
         throw Form::GradeTooHighException();
     if(toSign > LOW || toExec > LOW)
         throw Form::GradeTooLowException();
-    this->_requiredToSign = toSign;
-    this->_requiredToExec = toExec;
     std::cout << "Form " << this->_name << " has been created" << std::endl;
 }
 
@@ -31,9 +29,8 @@ Form::~Form() {
     std::cout << "Form " << this->_name << " has been destroyed" << std::endl;
 }
 
-Form::Form(const Form &other) {
-    std::cout << "Copy constructor called" << std::endl;
-    *this = other;
+Form::Form(const Form &other) : _name(other._name), _isSigned(other._isSigned), _requiredToSign(other._requiredToSign), _requiredToExec(other._requiredToExec) {
+    std::cout << "Copy constructor called" << std::endl;  
 }
 
 /********************
@@ -44,10 +41,7 @@ Form &Form::operator=(const Form &rhs) {
     std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
-        this->_name = rhs._name;
         this->_isSigned = rhs._isSigned;
-        this->_requiredToExec = rhs._requiredToExec;
-        this->_requiredToSign = rhs._requiredToSign;
     }
     return *this;
 }

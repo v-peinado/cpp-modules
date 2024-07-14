@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:07:44 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:07:45 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 14:09:54 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class AForm;
 
 class Bureaucrat {
     private:
-        std::string _name;
+        const std::string _name;
         int _grade;
         Bureaucrat();
     public:

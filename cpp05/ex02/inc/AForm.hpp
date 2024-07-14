@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:07:40 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:07:41 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 13:14:41 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 class AForm {
     private:
-        std::string _name;
+        const std::string _name;
         bool _isSigned;
-        int _requiredToSign;
-        int _requiredToExec;
+        const int _requiredToSign;
+        const int _requiredToExec;
         std::string _target;
         AForm();
     public:
@@ -45,9 +45,6 @@ class AForm {
 
         /*  Setters  */
 
-        void setName(std::string name);
-        void setGradeExec(int grade);
-        void setGradeSign(int grade);
         void setTarget(std::string target);
 
         /* Member function */

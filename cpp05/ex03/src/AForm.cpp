@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 18:09:36 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:09:37 by vpeinado         ###   ########.fr       */
+/*   Created: 2024/07/09 18:08:10 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/14 13:15:21 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 * Constructors *
 ***************/
 
-AForm::AForm(std::string name, int toSign, int toExec) : _name(name), _isSigned(false) {
+AForm::AForm(std::string name, int toSign, int toExec) : _name(name), _isSigned(false) , _requiredToSign(toSign), _requiredToExec(toExec) {
     if(toSign < HIGH || toExec < HIGH)
         throw AForm::GradeTooHighException();
     if(toSign > LOW || toExec > LOW)
         throw AForm::GradeTooLowException();
-    this->_requiredToSign = toSign;
-    this->_requiredToExec = toExec;
     //std::cout << "AForm " << this->_name << " has been created" << std::endl;
 }
 
@@ -31,9 +29,8 @@ AForm::~AForm() {
     //std::cout << "AForm " << this->_name << " has been destroyed" << std::endl;
 }
 
-AForm::AForm(const AForm &other) {
+AForm::AForm(const AForm &other) : _name(other._name), _isSigned(other._isSigned), _requiredToSign(other._requiredToSign), _requiredToExec(other._requiredToExec) {
     //std::cout << "Copy constructor called" << std::endl;
-    *this = other;
 }
 
 /********************
@@ -44,10 +41,8 @@ AForm &AForm::operator=(const AForm &rhs) {
     //std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
-        this->_name = rhs._name;
+        this->_target = rhs._target;
         this->_isSigned = rhs._isSigned;
-        this->_requiredToExec = rhs._requiredToExec;
-        this->_requiredToSign = rhs._requiredToSign;
     }
     return *this;
 }
@@ -98,17 +93,6 @@ void AForm::beSigned(Bureaucrat &Bureaucrat) {
         std::cout << " sign Form " << getName() << std::endl;
         this->_isSigned = true;
     }
-}
-
-void AForm::setName(std::string name) {
-    this->_name = name;
-}
-void AForm::setGradeExec(int grade){
-    this->_requiredToExec = grade;
-}
-
-void AForm::setGradeSign(int grade){
-    this->_requiredToSign = grade;
 }
 
 void AForm::setTarget(std::string target) {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:08:22 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:08:23 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 14:08:54 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
     se heredan los metodos publicos y protegidos, pero no los privados, por lo que deberemos acceder a ellos mediante
     metodos get y set, de la clase base, recordando que cada vez que se instancia una clase derivada, se instancia
     tambien la clase base.
+
 */
 
 int main(void) {
@@ -68,7 +69,8 @@ int main(void) {
     {
         Bureaucrat x("(O_O)", 50);
         b.beSigned(x);
-        b.execute(x);
+        //b.execute(x);
+        x.executeForm(b);
     }
     catch(const std::exception& e)
     {
@@ -82,8 +84,10 @@ int main(void) {
     
     try
     {
-        c.beSigned(a);
+        Bureaucrat y("(O_O)", 150);
+        c.beSigned(y);
         c.execute(a);
+        y.executeForm(c);
     }
     catch(const std::exception& e)
     {
@@ -127,7 +131,9 @@ int main(void) {
         std::cerr << e.what() << std::endl;
         std::cout << std::endl;
     }
-
+    /*
+        En las siguientes pruebas, se usara la funcion de executeForm, que es un metodo de Bureaucrat
+    */
     std::cout << "============================" << std::endl;
     std::cout << "         SCF ALL OK         " << std::endl;
     std::cout << "============================" << std::endl;
@@ -137,7 +143,7 @@ int main(void) {
         Bureaucrat ert("(O_O)", 1);
         ShrubberyCreationForm ok_form("PPF_Target");
         ok_form.beSigned(ert);
-        ok_form.execute(ert);
+        ert.executeForm(ok_form);
         std::cout << std::endl;
     }
     catch(const std::exception& e)
@@ -145,6 +151,24 @@ int main(void) {
         std::cerr << e.what() << std::endl;
         std::cout << std::endl;
     }
+
+    std::cout << "============================" << std::endl;
+    std::cout << "      BURO exec FORM        " << std::endl;
+    std::cout << "============================" << std::endl;
+    try
+    {
+        Bureaucrat ert("(O_O)", 1);
+        PresidentialPardonForm ok_form("PPF_Target");
+        ok_form.beSigned(ert);
+        ert.executeForm(ok_form);
+        std::cout << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+        std::cout << std::endl;
+    }
+    
 
     return 0;
 }

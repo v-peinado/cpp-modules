@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:07:10 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:07:11 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 13:45:38 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int main(void) {
     try
     {
         Form error_1("TooLowForm", 160, 160);
+        std::cout << error_1 << std::endl; 
     }
     catch(std::exception &e)
     {

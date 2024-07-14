@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:06:58 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:06:59 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 12:56:45 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
     std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
-        this->_name = rhs._name;
         this->_grade = rhs._grade;
     }
     return *this;

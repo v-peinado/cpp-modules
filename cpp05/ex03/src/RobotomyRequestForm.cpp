@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 18:10:06 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/10 14:22:49 by vpeinado         ###   ########.fr       */
+/*   Created: 2024/07/09 18:08:31 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/14 13:52:37 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &r
     std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
-        this->setName(rhs.getName());
-        this->setGradeExec(rhs.getGradeToExec());
-        this->setGradeSign(rhs.getGradeToSign());
         this->setTarget(rhs.getTarget());
     }
     return *this;
@@ -72,6 +69,12 @@ void RobotomyRequestForm::execute(Bureaucrat const& executor) const
 		throw RobotomyRequestForm::FormNotSigned();
     else
     {
+        /*
+            Iniciamos el generador de numeros aleatorios a partir de una semilla(time(NULL)), que es el EPOCH
+            , tiempo transcurrido desde el 1 del 1 de 1970, de manera que la semilla cambiara cada vez que se ejecute,
+            cambiando la secuencia de numero aleatorios,
+            si esta incicializacion siempre se devolveria la misma secuencia de numeros aleatorios
+        */
         std::srand(std::time(NULL));
         std::cout << this->getTarget() << " has been robotomized successfully 50% of the time" << std::endl;
         if(std::rand() % 2 == 0)

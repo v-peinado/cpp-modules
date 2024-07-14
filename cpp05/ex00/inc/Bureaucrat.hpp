@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:06:09 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/12 21:20:39 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 13:40:22 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 class Bureaucrat {
     private:
-        std::string _name;
+        const std::string _name;
         int _grade;
         Bureaucrat();
     public:

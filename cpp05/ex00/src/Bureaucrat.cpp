@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:05:41 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:05:45 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 13:17:24 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ Bureaucrat::~Bureaucrat() {
     std::cout << "Bureaucrat " << _name << " has been destroyed" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other) {
+Bureaucrat::Bureaucrat(const Bureaucrat &other)  : _name(other._name), _grade(other._grade) {
     std::cout << "Copy constructor called" << std::endl;
-    *this = other;
 }
 
 /********************
@@ -51,7 +50,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
     std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
-        this->_name = rhs._name;
         this->_grade = rhs._grade;
     }
     return *this;

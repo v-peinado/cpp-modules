@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 18:09:42 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:09:43 by vpeinado         ###   ########.fr       */
+/*   Created: 2024/07/09 18:08:14 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/14 14:12:37 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) {
 * Operators overload *
 ********************/
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
-    //std::cout << "Asignation operator called" << std::endl;
+    std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
-        this->_name = rhs._name;
         this->_grade = rhs._grade;
     }
     return *this;
@@ -96,6 +95,7 @@ void Bureaucrat::executeForm(AForm const &AForm) {
         throw AForm::GradeTooLowException();
     else
     {
+        std::cout << this->_name << " executes " << AForm.getName() << std::endl;
         AForm.execute(*this);
     }  
 }

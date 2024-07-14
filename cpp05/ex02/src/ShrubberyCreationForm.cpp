@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:08:36 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:08:37 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 14:01:35 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
     std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
-        this->setName(rhs.getName());
-        this->setGradeExec(rhs.getGradeToExec());
-        this->setGradeSign(rhs.getGradeToSign());
         this->setTarget(rhs.getTarget());
     }
     return *this;

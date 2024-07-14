@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 18:10:01 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:10:02 by vpeinado         ###   ########.fr       */
+/*   Created: 2024/07/09 18:08:27 by vpeinado          #+#    #+#             */
+/*   Updated: 2024/07/14 13:52:09 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
     std::cout << "Asignation operator called" << std::endl;
     if(this != &rhs)
     {
-        this->setName(rhs.getName());
-        this->setGradeExec(rhs.getGradeToExec());
-        this->setGradeSign(rhs.getGradeToSign());
         this->setTarget(rhs.getTarget());
     }
     return *this;

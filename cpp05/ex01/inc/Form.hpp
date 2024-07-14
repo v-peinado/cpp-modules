@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpeinado <vpeinado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:06:42 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/09 18:06:46 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/14 13:40:45 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 
 class Form {
     private:
-        std::string _name;
+        const std::string _name;
         bool _isSigned;
-        int _requiredToSign;
-        int _requiredToExec;
+        const int _requiredToSign;
+        const int _requiredToExec;
         Form();
     public:
         Form(std::string name, int toSign, int toExec);
