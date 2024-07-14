@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 21:06:05 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/14 22:30:36 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/15 00:20:24 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 
 int main(void) {
-    
     std::cout << "Se crea un array de 5 elementos" << std::endl;
     Array<int> arr(5);
     std::cout << "Se asignan valores aleatorios a los elementos" << std::endl;
@@ -58,6 +57,17 @@ int main(void) {
     std::cout << "Se imprime el arr3" << std::endl;
     for (unsigned int i = 0; i < arr3.size(); i++)
         std::cout << arr3[i] << std::endl;
+    std::cout << "Crearemos un array con el constructor de copia" << std::endl;
+    Array<int> arr4(arr2);
+    std::cout << "Modificamos arr4 para ver si cambia los valores de arr2" << std::endl;
+    for (unsigned int i = 0; i < arr4.size(); i++)
+        arr4[i] = 4;
+    std::cout << "Se imprime el arr2" << std::endl;
+    for (unsigned int i = 0; i < arr2.size(); i++)
+        std::cout << arr2[i] << std::endl;
+    std::cout << "Se imprime el arr4" << std::endl;
+    for (unsigned int i = 0; i < arr4.size(); i++)
+        std::cout << arr4[i] << std::endl;
     std::cout << "Se intenta acceder a un elemento fuera de rango" << std::endl;
     try {
         arr2[10] = 0;
