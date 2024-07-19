@@ -40,7 +40,7 @@ const char *ScalarConverter::ImpossibleConversionException::what() const throw()
 * Parse - Member functions *
 ***************************/
 
-bool isInt(std::string const &ref)
+bool ScalarConverter::isInt(std::string const &ref)
 {
     size_t i = 0;
     if(ref[i] == '+' || ref[i] == '-')
@@ -51,7 +51,7 @@ bool isInt(std::string const &ref)
     return true;
 }
 
-bool isFloat(std::string const &ref)
+bool ScalarConverter::isFloat(std::string const &ref)
 {
     size_t i = 0;
     bool point = false;
@@ -72,7 +72,7 @@ bool isFloat(std::string const &ref)
     return true;
 }
 
-bool isDouble(std::string const &ref)
+bool ScalarConverter::isDouble(std::string const &ref)
 {
     size_t i = 0;
     bool point = false;
@@ -92,7 +92,7 @@ bool isDouble(std::string const &ref)
     return true;
 }
 
-std::string getType(std::string const &ref)
+std::string ScalarConverter::getType(std::string const &ref)
 {
     std::string type;
 
@@ -129,7 +129,7 @@ std::string getType(std::string const &ref)
     ya que el rango de char estan muy por debajo del rango de int, nunca se produciria
     un overflow o underflow.
 */
-void printChar(std::string const &ref)
+void ScalarConverter::printChar(std::string const &ref)
 {
     char c = ref[0];
     if(isprint(c))
@@ -141,7 +141,7 @@ void printChar(std::string const &ref)
     std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
 }
 
-void printInt(std::string const &ref)
+void ScalarConverter::printInt(std::string const &ref)
 {
     /*
         Para convertir un string a un int, usamos istringstream
@@ -154,7 +154,7 @@ void printInt(std::string const &ref)
         Ya que istringstream si se encuentra con un numero que supera
         el rango de int, devolvera el valor maximo o minimo de int.
     */
-    long long i;
+    double i;
     std::stringstream iss(ref);
     iss >> i;
 
@@ -175,24 +175,30 @@ void printInt(std::string const &ref)
     if(i > std::numeric_limits<int>::max()) {
         std::cout << "int: " << "Overflow" << std::endl;
         std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(i) << std::endl;
+        if (i == std::numeric_limits<double>::max())
+            std::cout << "double: " << "inf" << std::endl;
+        else
+            std::cout << "double: " << static_cast<double>(i) << std::endl;
     }    
     if(i < std::numeric_limits<int>::min()) {
-        std::cout << "int: " << "Underflow" << std::endl;
+        std::cout << "int: " << "Underflow" << std::endl;       
         std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(i) << std::endl;
+        if (i == std::numeric_limits<double>::min())
+            std::cout << "double: " << "-inf" << std::endl;
+        else
+            std::cout << "double: " << static_cast<double>(i) << std::endl;
     }
 }
 
-void printFloat(std::string const &ref)
+void ScalarConverter::printFloat(std::string const &ref)
 {
     float f;
     int i;
     double d;
     std::stringstream iss(ref);
-    iss >> f;
-    i = static_cast<int>(f);
-    d = static_cast<double>(f);
+    iss >> d;
+    i = static_cast<int>(d);
+    f = static_cast<float>(d);
 
     if(isprint(static_cast<char>(i)) 
         && i >= std::numeric_limits<char>::min() && i <= std::numeric_limits<char>::max())
@@ -206,18 +212,25 @@ void printFloat(std::string const &ref)
     if(f < static_cast<float>(std::numeric_limits<int>::min())) 
         std::cout << "int: " << "Underflow" << std::endl;
 	
-    std::cout.precision(10); //Diez decimales de precision
+    
+    //std::cout << std::fixed << std::setprecision(10); //Diez decimales de precision
 	if (f - floorf(f) == 0) // floorf redondea al entero mas cercano, si lo restamos al numero original y da 0, es que es un entero
 		std::cout << "float: " << f << ".0f" << std::endl;
 	else
 		std::cout << "float: " << f << "f" << std::endl;
-	if (d - floor(d) == 0)
+
+    if (d == std::numeric_limits<double>::max())
+        std::cout << "double: " << "inf" << std::endl;
+    else if (d <= std::numeric_limits<double>::min())
+        std::cout << "double: " << "-inf" << std::endl;
+	else if (d - floor(d) == 0)
 		std::cout << "double: " << d << ".0" << std::endl;
 	else
-		std::cout << "double: " << d << std::endl;  
+		std::cout << "double: " << d << std::endl;
+ 
 }
 
-void printDouble(std::string const &ref)
+void ScalarConverter::printDouble(std::string const &ref)
 {
     float f;
     int i;
@@ -239,18 +252,23 @@ void printDouble(std::string const &ref)
     if(d < static_cast<double>(std::numeric_limits<int>::min())) 
         std::cout << "int: " << "Underflow" << std::endl;
 	
-    std::cout.precision(10);
+    //std::cout << std::fixed << std::setprecision(10);
 	if (f - floorf(f) == 0)
 		std::cout << "float: " << f << ".0f" << std::endl;
 	else
 		std::cout << "float: " << f << "f" << std::endl;
-	if (d - floor(d) == 0)
+
+    if (d == std::numeric_limits<double>::max())
+        std::cout << "double: " << "inf" << std::endl;
+    else if (d <= std::numeric_limits<double>::min())
+        std::cout << "double: " << "-inf" << std::endl;
+	else if (d - floor(d) == 0)
 		std::cout << "double: " << d << ".0" << std::endl;
 	else
 		std::cout << "double: " << d << std::endl;
 }
 
-void printPseudoDouble(std::string const &ref)
+void ScalarConverter::printPseudoDouble(std::string const &ref)
 {
     std::cout << "char: Impossible"	<< std::endl;
 	std::cout << "int: Impossible" << std::endl;
@@ -258,7 +276,7 @@ void printPseudoDouble(std::string const &ref)
 	std::cout << "double: " << ref << std::endl;	
 }
 
-void printPseudoFloat(std::string const &ref)
+void ScalarConverter::printPseudoFloat(std::string const &ref)
 {
     std::cout << "char: Impossible"	<< std::endl;
     std::cout << "int: Impossible" << std::endl;
