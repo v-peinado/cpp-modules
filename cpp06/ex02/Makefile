@@ -7,7 +7,7 @@ CURSIVE	=	\033[33;3m
 RED		= 	\033[31m
 
 #Program name
-NAME	= typeinfo
+NAME	= typeinf
 #Compiler
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98

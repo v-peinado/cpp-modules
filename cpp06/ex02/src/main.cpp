@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:00:26 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/19 15:10:23 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/20 12:14:25 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,20 @@ int main(void) {
         mandar el puntero como paremetro, lo desreferenciamos directamente
     */
     identify(*base);
-   
+
+    /*
+        Con dynamic_cast podemos castear un puntero a un tipo de clase derivada,
+        en el siguiente caso, se castea un puntero de tipo Base a un puntero de tipo A,
+        originalmente el puntero de tipo base apunta a un objeto de tipo A, por lo que
+        el casteo es valido.
+        El casteo de Base a A se podra hacer siempre y cuando el objeto al que apunta
+        el puntero sea de tipo A, si no, el resultado sera NULL;
+    */  
+    Base *baseA = new A;
+    A *baseCasted = dynamic_cast<A*>(baseA);
+
+    identify(baseCasted);
+    
     delete base;
     return 0;
 }
