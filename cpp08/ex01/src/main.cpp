@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:32:50 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/24 20:18:07 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:01:55 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,39 @@
 
 int main()
 {
+    
+    std::cout << "========================" << std::endl
+              << "        Test empty      " << std::endl
+              << "========================" << std::endl;
+    try
+    {
+        Span spFail(10);
+        std::cout << "Shortest span: " << spFail.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << spFail.longestSpan() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    
+    std::cout << "========================" << std::endl
+              << "    Test less than 2      " << std::endl
+              << "========================" << std::endl;
+    try
+    {
+        Span spFail(1);
+        spFail.addNumber(42);
+        std::cout << "Shortest span: " << spFail.shortestSpan() << std::endl;
+        std::cout << "Longest span: " << spFail.longestSpan() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    
     Span sp = Span(5);
     sp.addNumber(5);
-    sp.addNumber(3);
+    sp.addNumber(3);          
     sp.addNumber(17);
     sp.addNumber(9);
     sp.addNumber(11);
@@ -89,6 +119,6 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
-     
+    
     return 0;
 }
