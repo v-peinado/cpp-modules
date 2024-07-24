@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:32:57 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/24 14:22:37 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:51:18 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ class Span
         void addNumber(int n);
         int shortestSpan();
         int longestSpan();
-        void fillVector(std::vector<int>::iterator begin, std::vector<int>::iterator end);  
+        void fillVector(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+        void fillVector();
 };
 
 #endif

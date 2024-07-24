@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:32:54 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/24 14:34:49 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:52:04 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ Span::~Span() {}
 
 void Span::addNumber(int n)
 {
+    if (n < 0)
+        throw std::runtime_error("Negative numbers are not allowed");
     if (_vector.size() < _N)
         _vector.push_back(n);
     else
@@ -85,3 +87,10 @@ void Span::fillVector(std::vector<int>::iterator begin, std::vector<int>::iterat
         throw std::runtime_error("Not enough space in span");
     _vector.insert(_vector.end(), begin, end);
 }
+
+void Span::fillVector()
+{
+    for (unsigned int i = 0; i < _N; i++)
+        _vector.push_back(i);
+}
+
