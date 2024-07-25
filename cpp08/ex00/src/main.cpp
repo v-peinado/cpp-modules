@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:40:51 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/22 01:15:37 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:55:21 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 #include <vector>
 #include <list>
 #include <deque>
+
+/*
+    STL (Standard Template Library) es una biblioteca de plantillas de C++ que proporciona estructuras de datos y algoritmos comunes.
+    La STL se compone de varios componentes, como contenedores, iteradores, algoritmos, funciones y adaptadores.
+    Los contenedores son estructuras de datos que almacenan elementos en una secuencia ordenada.
+    Los iteradores son objetos que proporcionan una interfaz estandarizada para recorrer y operar sobre elementos en contenedores.
+    Los algoritmos son funciones que realizan operaciones en los elementos de los contenedores.
+*/
 
 
 int main()
@@ -28,6 +36,7 @@ int main()
         - Los vectores son objetos, mientras que los arrays son punteros.
         - Los vectores tienen un tamaño dinámico, mientras que los arrays tienen un tamaño fijo.
         - Los vectores proporcionan funciones miembro para acceder y manipular los elementos, mientras que los arrays no.
+        Tambien existe std::array, que es un contenedor de tamaño fijo que almacena elementos del mismo tipo en una secuencia ordenada.
     */
    
     //std::vector<int> vec = {1, 2, 3, 4, 5}; ESTA FORMA ESTA PROHIBIDA EN C++98
