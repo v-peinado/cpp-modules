@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 18:10:19 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/25 21:43:40 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:43:32 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,15 @@ class MutantStack : public std::stack<T>
             }
         const_reverse_iterator crend() const {
             return std::stack<T>::c.crend(); 
-            }            
+            } 
+
+        /*
+            El metodo top esta disponible en la pila, pero no el metodo bottom, ya que una pila es una estructura de datos LIFO (Last In First Out)
+            y no tiene sentido acceder al primer elemento de la pila, pero igual que anteriormente se puede implementar
+        */
+        const T& bottom() { 
+            return *std::stack<T>::c.begin();
+            }          
 };
 
 
