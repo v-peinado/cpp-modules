@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 18:10:36 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/26 13:33:44 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:51:20 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main()
     //     std::cout << *it << std::endl;
     
     
-    std::cout << "value: " << *it << std::endl;
+    //std::cout << "value: " << *it << std::endl;
 
     std::cout << "==============================" << std::endl
               << "Testing with MutantStack<int>:" << std::endl
@@ -53,12 +53,12 @@ int main()
         std::cout << *it << " ";
     std::endl(std::cout);
     
-    std::cout << "Top: " << mstack.top() << std::endl;
+    std::cout << "Top: " << mstack.top() << " ->"  << &mstack.top() <<std::endl;
     std::cout << "Size: " << mstack.size() << std::endl;
     std::cout << "Pop" << std::endl;
     mstack.pop();
     std::cout << "Our implement Top: " << mstack.top() << std::endl;
-    std::cout << "Bottom: " << mstack.bottom() << std::endl;
+    std::cout << "Bottom: " << mstack.bottom() << " ->"  << &mstack.bottom() <<std::endl; //direccion del stack donde este empieza a crecer
 
     std::cout << "MutantStack after pop: ";
     for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); it++)
@@ -73,24 +73,10 @@ int main()
         para que veamos que son contiguas las direcciones de memoria
         convertirlo a un tipo de entero lo suficientemente grande como para contener una dirección de memoria, como uintptr_t
         veremos que las direcciones de memoria son contiguas separdas por 4 bytes = 32 bits, tamaño de un int en este sistema
-        veremos que la pila crece hacia abajo es decir que las direcciones de memoria son menores a medida que se añaden elementos
-        +----------------------+ 0xFFFFFFFF (dirección de memoria más alta)
-        |                      |
-        |       Heap           | <--- Crece hacia arriba
-        |                      |
-        +----------------------+
-        |                      |
-        |      Libre           |
-        |                      |
-        +----------------------+
-        |                      |
-        |       Stack          | <--- Crece hacia abajo
-        |                      |
-        +----------------------+
-        |   Datos Estáticos    |
-        +----------------------+
-        |    Código (Text)     |
-        +----------------------+ 0x00000000 (dirección de memoria más baja)
+        std::stack es un contenedor en la biblioteca estándar de C++ que proporciona una interfaz de pila (LIFO - Last In, First Out) sobre un contenedor subyacente,
+        como std::vector, std::deque, o std::list.
+        El crecimiento de std::stack depende del contenedor subyacente utilizado, y típicamente crece hacia direcciones de memoria más altas.
+        No confundir con la pila del proceso, que crece hacia direcciones de memoria más bajas.
     */
     std::cout << "Print address of stack elements after cast to uintptr_t: " << std::endl;
     for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); it++)
