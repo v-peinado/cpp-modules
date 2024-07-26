@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 18:10:36 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/26 17:51:20 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/26 17:55:12 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int main()
     //test que no se puede iterar un stack
     //dara fallo de compilación
     // std::stack<int> fail;
-	// for (std::stack<int>::iterator it = fail.begin(); it != fail.end(); it++) {
+	// for (std::stack<int>::iterator it = fail.begin(); it != fail.end(); it++)
     //     std::cout << *it << std::endl;
     
     
-    //std::cout << "value: " << *it << std::endl;
+    // std::cout << "value: " << *it << std::endl;
 
     std::cout << "==============================" << std::endl
               << "Testing with MutantStack<int>:" << std::endl
