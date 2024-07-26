@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:40:51 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/25 20:55:21 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:10:56 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <vector>
 #include <list>
 #include <deque>
+#include <stdint.h>
 
 /*
     STL (Standard Template Library) es una biblioteca de plantillas de C++ que proporciona estructuras de datos y algoritmos comunes.
@@ -73,6 +74,15 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
+    std::cout << "Print address of vector elements: " << std::endl;
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+        std::cout << &(*it) << " ";
+    std::endl(std::cout);
+
+    std::cout << "Print address of vector elements after cast to uintptr_t: " << std::endl;
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+        std::cout << reinterpret_cast<uintptr_t>(&(*it)) << " ";
+    std::endl(std::cout);
 
     std::cout << "***********************" << std::endl;
     std::cout << "Testing with list<int>:" << std::endl;
@@ -120,6 +130,16 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
+    std::cout << "Print address of list elements: " << std::endl;
+    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
+        std::cout << &(*it) << " ";
+    std::endl(std::cout);
+
+    std::cout << "Print address of list elements after cast to uintptr_t: " << std::endl;
+    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++)
+        std::cout << reinterpret_cast<uintptr_t>(&(*it)) << " ";
+    std::endl(std::cout);
+
     std::cout << "*************************" << std::endl;
     std::cout << "Testing with deque<int>:" << std::endl;
     std::cout << "*************************" << std::endl;
@@ -164,6 +184,15 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
+    std::cout << "Print address of deque elements: " << std::endl;
+    for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); it++)
+        std::cout << &(*it) << " ";
+    std::endl(std::cout);
+
+    std::cout << "Print address of deque elements after cast to uintptr_t: " << std::endl;
+    for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); it++)
+        std::cout << reinterpret_cast<uintptr_t>(&(*it)) << " ";
+    std::endl(std::cout);
     
     /*
         A continuacion se muestra un ejemplo de como se comporta la función con un contenedor que no contiene elementos.
