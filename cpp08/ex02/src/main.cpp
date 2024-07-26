@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 18:10:36 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/26 13:25:44 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/26 13:33:44 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,16 @@ int main()
     mstack.push(42);
 
     //test que no se puede aplicar cambios a un contenedor constante
-    MutantStack<int>::iterator it = mstack.begin();
-    (*it) = 42; //cambiamos el valor 5 por 42
+    //dara fallo de compilación
+    //MutantStack<int>::const_iterator it = mstack.begin();
+    //(*it) = 42; //cambiamos el valor 5 por 42
+
+    //test que no se puede iterar un stack
+    //dara fallo de compilación
+    // std::stack<int> fail;
+	// for (std::stack<int>::iterator it = fail.begin(); it != fail.end(); it++) {
+    //     std::cout << *it << std::endl;
+    
     
     std::cout << "value: " << *it << std::endl;
 
