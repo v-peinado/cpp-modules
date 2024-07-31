@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:16:42 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/31 14:12:15 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:18:43 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int main(int argc, char **argv)
     }
     filename = argv[1];
     BitcoinExchange exchange = BitcoinExchange();
-    exchange.startExchange(filename);
+    try 
+    {
+        exchange.startExchange(filename);
+    } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
     return 0;
 }

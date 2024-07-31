@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:32:34 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/31 14:12:37 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:26:30 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ class BitcoinExchange
     public:
         BitcoinExchange();
         ~BitcoinExchange();
+        BitcoinExchange(const BitcoinExchange &other);
+        BitcoinExchange &operator=(const BitcoinExchange &rhs);
         
-        void startExchange(std::string filename);       
+        void startExchange(std::string filename);     
 };
 
 #endif
