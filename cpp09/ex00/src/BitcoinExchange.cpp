@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:32:28 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/07 16:43:58 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:50:39 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,26 @@ std::string BitcoinExchange::to_string(int i) {
 }
 
 bool BitcoinExchange::is_leap(int year) {
-    if (year % 4 != 0)
+    // Primero, verifica si el año es divisible por 4
+    if (year % 4 == 0) {
+        // Si el año es divisible por 4, verifica si también es divisible por 100
+        if (year % 100 == 0) {
+            // Si el año es divisible por 100, verifica si también es divisible por 400
+            if (year % 400 == 0) {
+                // Si el año es divisible por 400, entonces es un año bisiesto
+                return true;
+            } else {
+                // Si el año es divisible por 100 pero no por 400, entonces no es un año bisiesto
+                return false;
+            }
+        } else {
+            // Si el año es divisible por 4 pero no por 100, entonces es un año bisiesto
+            return true;
+        }
+    } else {
+        // Si el año no es divisible por 4, entonces no es un año bisiesto
         return false;
-    if (year % 100 != 0)
-        return true;
-    if (year % 400 != 0)
-        return false;
-    return true;
+    }
 }
 
 void BitcoinExchange::is_valid_date(std::string date, std::string filename, int i) {
