@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:32:28 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/07 17:34:12 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/07 22:55:01 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,17 @@ void BitcoinExchange::is_valid_date(std::string date, std::string filename, int 
     int year, month, day;
     char delimiter1, delimiter2;
     std::stringstream ss(date);
-
+    /*
+        Usa un stringstream para parsear la fecha y guardarla en las variables year, month y day
+        Esto podemos hacerlo debido a que sabemos que la fecha tiene un formato especifico, de numeros separados por guiones(char)
+        Si la fecha no tiene el formato correcto, lanzamos una excepción
+        El control de flujo se hace de la siguiente manera:
+        - Si no se puede parsear la fecha, lanzamos una excepción
+        - Si el primer delimitador no es un guion, lanzamos una excepción
+        - Si el segundo delimitador no es un guion, lanzamos una excepción
+        - Si el flujo de datos falla, lanzamos una excepción
+        - Si no se ha llegado al final del flujo de datos, lanzamos una excepción  
+    */
     if (!(ss >> year >> delimiter1 >> month >> delimiter2 >> day) || delimiter1 != '-' || delimiter2 != '-' || ss.fail() || !ss.eof())
         throw std::runtime_error("Error: invalid date format in file " + filename + " at line " + to_string(i) + " => " + date);
     if (year < 2009)
@@ -132,9 +142,27 @@ void BitcoinExchange::validLineDB(std::string line, std::string filename, int i)
 
 void BitcoinExchange::validLineInput(std::string line, std::string filename, int i)
 {
+    /*
+        Buscamos la posición del delimitador en la linea " | ", ya que al ser 3 caracteres no podemos usar la mismas formulas que en data.csv
+        Si no encontramos el delimitador, lanzamos una excepción
+    */
+    size_t delimiter_pos = line.find(" | ");
+    if (delimiter_pos == std::string::npos)
+        throw std::runtime_error("Error: the delimiter \" | \" is not found in file " + filename + " at line " + to_string(i) + " => " + line);
+    //iteramos y si encontramos mas de dos espacios en blanco, error
+    if (std::count(line.begin(), line.end(), ' ') > 2)
+        throw std::runtime_error("Error: the delimiter \" | \" is not found in file " + filename + " at line " + to_string(i) + " => " + line);
+    line.erase(std::remove_if(line.begin(), line.end(), ::isspace), line.end());
+    std::stringstream ss(line);
+    /*
+        Eliminamos los espacios en blanco de la linea usando el metodo erase y remove_if, iterando sobre la linea y borrndo los espacios
+        Parseamos la linea y guardamos la fecha y el valor en dos variables con getline, poniendo como delimitador el caracter '|'
+        obtendremps key que sera lo que haya antes del delimitador y el resto de ss lo guardaremos en value usando el operador >>
+        que  nos permite convertir el resto de la linea a double
+        Si la linea no es valida, lanzamos una excepción especifica y continuamos con la siguiente linea
+    */
     std::string key;
     double value;
-    std::stringstream ss(line);
     std::getline(ss, key, '|');
     ss >> value;
     is_valid_date(key, filename, i);
@@ -241,14 +269,6 @@ void BitcoinExchange::parseInputFile(std::string filename)
         std::stringstream ss(line);
         if (line.empty())
             continue;
-        /*
-            Eliminamos los espacios en blanco de la linea usando el metodo erase y remove_if, iterando sobre la linea y borrndo los espacios
-            Parseamos la linea y guardamos la fecha y el valor en dos variables con getline, poniendo como delimitador el caracter '|'
-            obtendremps key que sera lo que haya antes del delimitador y el resto de ss lo guardaremos en value usando el operador >>
-            que  nos permite convertir el resto de la linea a double
-            Si la linea no es valida, lanzamos una excepción especifica y continuamos con la siguiente linea
-        */
-        line.erase(std::remove_if(line.begin(), line.end(), ::isspace), line.end());
         // Si la linea no es valida, lanzamos una excepción especifica y continuamos con la siguiente linea
         try
         {
