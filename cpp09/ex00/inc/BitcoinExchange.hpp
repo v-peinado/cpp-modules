@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:32:34 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/05 19:49:18 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:56:41 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ class BitcoinExchange
         BitcoinExchange(const BitcoinExchange &other);
         BitcoinExchange &operator=(const BitcoinExchange &rhs);
         
-        /* Exchange */
-        void startExchange(std::string filename);
-
-        /* Parse files */
+        
+        /* main functions */
         void parseDbFile(std::string filename);
         void parseInputFile(std::string filename);
+
+        /* utils  and parse*/
         std::string to_string(int i);
         void validLineDB(std::string line, std::string filename, int i);
         void validLineInput(std::string line, std::string filename, int i);

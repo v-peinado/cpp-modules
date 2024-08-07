@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:16:42 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/05 17:50:32 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:56:10 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main(int argc, char **argv)
     }
     filename = argv[1];
     BitcoinExchange exchange = BitcoinExchange();
-    exchange.startExchange(filename);
+    exchange.parseDbFile("data.csv");
+    exchange.parseInputFile(filename);
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:32:28 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/05 19:48:58 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:13:05 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,22 @@ void BitcoinExchange::is_valid_date(std::string date, std::string filename, int 
     ss >> month;
     ss.ignore(1);
     ss >> day;
+    if (ss.peek() != EOF)
+        throw std::runtime_error("Error: invalid date format in file " + filename + " at line " + to_string(i) + " => " + date);
     if (year < 2009)
-        throw std::runtime_error("Error: the year cannot be less than 2009 in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the year cannot be less than 2009 in file " + filename + " at line " + to_string(i) + " => " + date);
     if (year > 2024)
-        throw std::runtime_error("Error: the year cannot be greater than 2024 in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the year cannot be greater than 2024 in file " + filename + " at line " + to_string(i) + " => " + date);
     if (month < 1 || month > 12)
-        throw std::runtime_error("Error: the month must be between 1 and 12 in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the month must be between 1 and 12 in file " + filename + " at line " + to_string(i) + " => " + date);
     if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && (day < 1 || day > 31))
-        throw std::runtime_error("Error: the day must be between 1 and 31 in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the day must be between 1 and 31 in file " + filename + " at line " + to_string(i) + " => " + date);
     if ((month == 4 || month == 6 || month == 9 || month == 11) && (day < 1 || day > 30))
-        throw std::runtime_error("Error: the day must be between 1 and 30 in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the day must be between 1 and 30 in file " + filename + " at line " + to_string(i) + " => " + date);
     if (month == 2 && is_leap(year) && (day < 1 || day > 29))
-        throw std::runtime_error("Error: the day must be between 1 and 29 in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the day must be between 1 and 29 in file " + filename + " at line " + to_string(i) + " => " + date);
     if (month == 2 && !is_leap(year) && (day < 1 || day > 28))
-        throw std::runtime_error("Error: the day must be between 1 and 28 in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the day must be between 1 and 28 in file " + filename + " at line " + to_string(i) + " => " + date);
 }
 
 void BitcoinExchange::validLineDB(std::string line, std::string filename, int i) {
@@ -93,7 +95,9 @@ void BitcoinExchange::validLineDB(std::string line, std::string filename, int i)
     ss >> value;
     is_valid_date(key, filename, i);
     if (value < 0)
-        throw std::runtime_error("Error: the value cannot be less than 0  in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the value cannot be less than 0 in file " + filename + " at line " + to_string(i) + " => " + line);
+    if (ss.peek() != EOF)
+        throw std::runtime_error("Error: invalid exchange rate format in file " + filename + " at line " + to_string(i) + " => " + line);
 }
 
 void BitcoinExchange::validLineInput(std::string line, std::string filename, int i) {
@@ -104,9 +108,11 @@ void BitcoinExchange::validLineInput(std::string line, std::string filename, int
     ss >> value;
     is_valid_date(key, filename, i); 
     if (value < 0)
-        throw std::runtime_error("Error: the value cannot be less than 0  in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the value cannot be less than 0 in file " + filename + " at line " + to_string(i) + " => " + line);
     if (value > 1000)
-        throw std::runtime_error("Error: the value cannot be greater than 1000 in file " + filename + " at line " + to_string(i));
+        throw std::runtime_error("Error: the value cannot be greater than 1000 in file " + filename + " at line " + to_string(i) + " => " + line);
+    if (ss.peek() != EOF)
+        throw std::runtime_error("Error: invalid value format in file " + filename + " at line " + to_string(i) + " => " + line);
 }
 
 void BitcoinExchange::parseDbFile(std::string filename) {
@@ -198,7 +204,7 @@ void BitcoinExchange::parseInputFile(std::string filename) {
         //Si la linea no es valida, lanzamos una excepción especifica y continuamos con la siguiente linea
         try
         {
-            validLineInput(line, filename, i);           
+            validLineInput(line, filename, i);          
         }
         catch(const std::exception& e)
         {
@@ -206,16 +212,29 @@ void BitcoinExchange::parseInputFile(std::string filename) {
             continue;
         }
         //Si encontramos conincidencia en la fecha, multiplicamos el valor de btc por el valor de la moneda, si no buscamos la fecha mas cercana por debajo
-        if (_data.find(key) != _data.end())
+        try
         {
-            std::cout << key << " => " << value << " = " << value * _data[key] << std::endl;
+            if (_data.find(key) != _data.end())
+            {
+                std::cout << key << " => " << value << " = " << value * _data[key] << std::endl;
+            }
+            else
+            {
+                std::map<std::string, double>::iterator it = _data.lower_bound(key); //Buscamos la fecha mas cercana por debajo
+                if (it == _data.begin()) //Si no hay fecha por debajo, lanzamos una excepción
+                    throw std::runtime_error("Error: no exchange rate data available for date " + key + " in file " + filename + " at line " + to_string(i) + " => " + line);
+                else
+                {
+                    it--; 
+                    std::cout << key << " => " << value << " = " << value * it->second << std::endl;
+                }
+            }
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
         }
         
     }
     file.close();
-}
-
-void BitcoinExchange::startExchange(std::string filename) {
-    parseDbFile("data.csv");
-    parseInputFile(filename);
 }
