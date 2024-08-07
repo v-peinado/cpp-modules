@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:32:28 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/07 16:13:05 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:43:58 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <algorithm>
 
 /*******************************
 * Constructors and destructors *
@@ -63,13 +64,10 @@ bool BitcoinExchange::is_leap(int year) {
 
 void BitcoinExchange::is_valid_date(std::string date, std::string filename, int i) {
     int year, month, day;
+    char delimiter1, delimiter2;
     std::stringstream ss(date);
-    ss >> year;
-    ss.ignore(1);
-    ss >> month;
-    ss.ignore(1);
-    ss >> day;
-    if (ss.peek() != EOF)
+
+    if (!(ss >> year >> delimiter1 >> month >> delimiter2 >> day) || delimiter1 != '-' || delimiter2 != '-' || ss.fail() || !ss.eof())
         throw std::runtime_error("Error: invalid date format in file " + filename + " at line " + to_string(i) + " => " + date);
     if (year < 2009)
         throw std::runtime_error("Error: the year cannot be less than 2009 in file " + filename + " at line " + to_string(i) + " => " + date);
@@ -96,7 +94,7 @@ void BitcoinExchange::validLineDB(std::string line, std::string filename, int i)
     is_valid_date(key, filename, i);
     if (value < 0)
         throw std::runtime_error("Error: the value cannot be less than 0 in file " + filename + " at line " + to_string(i) + " => " + line);
-    if (ss.peek() != EOF)
+    if (ss.fail() || !ss.eof())
         throw std::runtime_error("Error: invalid exchange rate format in file " + filename + " at line " + to_string(i) + " => " + line);
 }
 
@@ -111,7 +109,7 @@ void BitcoinExchange::validLineInput(std::string line, std::string filename, int
         throw std::runtime_error("Error: the value cannot be less than 0 in file " + filename + " at line " + to_string(i) + " => " + line);
     if (value > 1000)
         throw std::runtime_error("Error: the value cannot be greater than 1000 in file " + filename + " at line " + to_string(i) + " => " + line);
-    if (ss.peek() != EOF)
+    if (ss.fail() || !ss.eof())
         throw std::runtime_error("Error: invalid value format in file " + filename + " at line " + to_string(i) + " => " + line);
 }
 
@@ -199,6 +197,8 @@ void BitcoinExchange::parseInputFile(std::string filename) {
         std::stringstream ss(line);
         if (line.empty())
             continue;
+        //quitar espacios en blanco, para poder usar el mismo metodo de validación que en db
+        line.erase(std::remove_if(line.begin(), line.end(), ::isspace), line.end());
         std::getline(ss, key, '|');
         ss >> value;
         //Si la linea no es valida, lanzamos una excepción especifica y continuamos con la siguiente linea
