@@ -144,19 +144,19 @@ void ScalarConverter::printChar(std::string const &ref)
 void ScalarConverter::printInt(std::string const &ref)
 {
     /*
-        Para convertir un string a un int, usamos istringstream
+        Para convertir un string a un int, usamos stringstream
         y el operador >> para convertir el string a un int. Ya que 
         convertira la entrada en el tipo de dato que le pasemos.
         Convertimos en string en un long long, para poder
         comprobar si esta en rango de int.
         Raliza operaciones como cin, pero en vez de leer de la entrada
         estandar, lee de un string(es decir, de un buffer de memoria).
-        Ya que istringstream si se encuentra con un numero que supera
+        Ya que ./stringstream si se encuentra con un numero que supera
         el rango de int, devolvera el valor maximo o minimo de int.
     */
     double i;
-    std::stringstream iss(ref);
-    iss >> i;
+    std::stringstream ss(ref);
+    ss >> i;
 
     //Imprimir el char, si es imprimible
     if(isprint(static_cast<char>(i)) 
@@ -195,8 +195,8 @@ void ScalarConverter::printFloat(std::string const &ref)
     float f;
     int i;
     double d;
-    std::stringstream iss(ref);
-    iss >> d;
+    std::stringstream ss(ref);
+    ss >> d;
     i = static_cast<int>(d);
     f = static_cast<float>(d);
 
@@ -235,8 +235,8 @@ void ScalarConverter::printDouble(std::string const &ref)
     float f;
     int i;
     double d;
-    std::stringstream iss(ref);
-    iss >> d;
+    std::stringstream ss(ref);
+    ss >> d;
     i = static_cast<int>(d);
     f = static_cast<float>(d);
 
