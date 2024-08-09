@@ -37,15 +37,4 @@ class ScalarConverter {
         };
 };
 
-std::string getType(std::string const &ref);
-bool isInt(std::string const &ref);
-bool isFloat(std::string const &ref);
-bool isDouble(std::string const &ref);
-void printChar(std::string const &ref);
-void printInt(std::string const &ref);
-void printFloat(std::string const &ref);
-void printDouble(std::string const &ref);
-void printPseudoDouble(std::string const &ref);
-void printPseudoFloat(std::string const &ref);
-
 #endif

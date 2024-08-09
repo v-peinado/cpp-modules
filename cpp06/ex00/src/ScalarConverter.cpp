@@ -12,6 +12,11 @@
     No necesitaremos un constructor, destructor, ni operador de asignacion, lo declararemos
     como privado para que no se pueda instanciar un objeto de la clase.
 
+    Sí, si una clase no puede ser instanciada (por ejemplo, si tiene un constructor privado o es una clase abstracta),
+    aún puedes acceder a sus métodos estáticos si son públicos. 
+    Los métodos estáticos pertenecen a la clase en sí, no a una instancia específica, 
+    por lo que no es necesario crear un objeto para invocarlos.
+
 ScalarConverter::ScalarConverter() {}
 ScalarConverter::~ScalarConverter() {}
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
