@@ -35,6 +35,8 @@ class ScalarConverter {
             public:
                 virtual const char *what() const throw();
         };
+        // podemos obviar crear una clase para la excepcion y usar directamente
+        // throw std::runtime_error("impossible");
 };
 
 #endif
