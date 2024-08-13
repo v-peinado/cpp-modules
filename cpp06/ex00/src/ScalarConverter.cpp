@@ -186,12 +186,12 @@ void ScalarConverter::printInt(std::string const &ref)
             std::cout << "double: " << static_cast<double>(i) << std::endl;
     }    
     if(i < std::numeric_limits<int>::min()) {
-        std::cout << "int: " << "Underflow" << std::endl;       
-        std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
-        if (i == std::numeric_limits<double>::min())
-            std::cout << "double: " << "-inf" << std::endl;
-        else
-            std::cout << "double: " << static_cast<double>(i) << std::endl;
+            std::cout << "int: " << "Underflow" << std::endl;       
+            std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
+            if (i == -std::numeric_limits<double>::max())
+                    std::cout << "double: " << "-inf" << std::endl;
+            else
+                    std::cout << "double: " << static_cast<double>(i) << std::endl;
     }
 }
 
@@ -226,7 +226,7 @@ void ScalarConverter::printFloat(std::string const &ref)
 
     if (d == std::numeric_limits<double>::max())
         std::cout << "double: " << "inf" << std::endl;
-    else if (d <= std::numeric_limits<double>::min())
+    else if (d == -std::numeric_limits<double>::max())
         std::cout << "double: " << "-inf" << std::endl;
 	else if (d - floor(d) == 0)
 		std::cout << "double: " << d << ".0" << std::endl;
@@ -265,7 +265,7 @@ void ScalarConverter::printDouble(std::string const &ref)
 
     if (d == std::numeric_limits<double>::max())
         std::cout << "double: " << "inf" << std::endl;
-    else if (d <= std::numeric_limits<double>::min())
+    else if (d == -std::numeric_limits<double>::max())
         std::cout << "double: " << "-inf" << std::endl;
 	else if (d - floor(d) == 0)
 		std::cout << "double: " << d << ".0" << std::endl;
