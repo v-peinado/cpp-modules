@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 18:52:34 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/07/14 19:13:44 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/18 21:34:11 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,15 @@
 #define I_HPP
 
 #include <iostream>
-#include <stddef.h> //size_t
+#include <stddef.h> //o <cstddef>, para size_t
 
-template <typename T>
-void iter(T *array, size_t size, void (*f)(T&)) {
-    for (size_t i = 0; i < size; i++) {
-        f(array[i]);
+template<typename T, typename F> //
+void iter(T* array, size_t length, F func) {
+    for (size_t i = 0; i < length; ++i) {
+        func(array[i]);  // Apply the function to each element
     }
 }
 
-template <typename T>
-void print(T &elem) {
-    std::cout << elem << std::endl;
-}
 
 template <typename T>
 void addOne(T &elem) {
