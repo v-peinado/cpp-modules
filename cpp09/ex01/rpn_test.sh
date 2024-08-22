@@ -81,6 +81,8 @@ for expr in "${!tests[@]}"; do
   # Mostrar el resultado y la comparación
   if [ "$output" == "$expected" ]; then
     print_in_color "$COLOR_SUCCESS" "Test PASSED"
+    echo "Output from program: $output"
+    echo "Expected result: $expected"
   else
     print_in_color "$COLOR_FAILURE" "Test FAILED"
     echo "Output from program: $output"
