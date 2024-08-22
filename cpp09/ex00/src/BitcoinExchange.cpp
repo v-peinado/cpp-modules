@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:32:28 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/07 22:55:01 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:25:21 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <cstdlib>
 #include <algorithm>
 
-/*******************************
- * Constructors and destructors *
- *******************************/
+/******************************************************************************
+* ------------------------------- CONSTRUCTORS ------------------------------ *
+******************************************************************************/
 
 BitcoinExchange::BitcoinExchange()
 {
@@ -38,9 +38,9 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
     return *this;
 }
 
-/**************************
- *      Member Functions   *
- **************************/
+/*****************************************************************************
+* ------------------------------- MEMBER FUNCTIONS ------------------------- *
+*****************************************************************************/
 
 void BitcoinExchange::printDb() const
 {
@@ -142,6 +142,8 @@ void BitcoinExchange::validLineDB(std::string line, std::string filename, int i)
 
 void BitcoinExchange::validLineInput(std::string line, std::string filename, int i)
 {
+    if (line[0] == ' ' || line[0] == '\t') // Si la linea empieza con un espacio o tabulador, lanzamos una excepción
+        throw std::runtime_error("Error: the line cannot start with a space in file " + filename + " at line " + to_string(i) + " => " + line);
     /*
         Buscamos la posición del delimitador en la linea " | ", ya que al ser 3 caracteres no podemos usar la mismas formulas que en data.csv
         Si no encontramos el delimitador, lanzamos una excepción
