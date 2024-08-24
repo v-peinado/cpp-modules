@@ -66,7 +66,10 @@ failing_tests = {
     "1 2 3 + * +": "Invalid",
     "+ 1 2 3 + ": "Invalid",
     "9 9 9 9": "Invalid",
-    "4 0 /": "Invalid"  # Division entre 0
+    "4 0 /": "Invalid", # Division entre 0
+    "55 1 +" : "Invalid",
+    "2 3 4 * 5 + - 6": "Invalid",
+    "3a 4 5 * + 6 -": "Invalid"
 }
 
 # Evaluar expresiones que deberían pasar
