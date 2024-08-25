@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 22:36:14 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/25 00:38:56 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/25 22:06:39 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,18 @@ void PmergeMe::init()
 {
     try 
     {
-        parse_values(_str, _values_1);
-        parse_values(_str, _values_2);
-        parse_values(_str, _values_3);
+        parse_values(_str, this->_values_1);
+        parse_values(_str,  this->_values_2);
+        //parse_values(_str,  this->_values_3);
+               
     } 
     catch (std::exception &e) 
     {
         std::cerr << e.what() << std::endl;
+        return ;
     }
 }
+    int PmergeMe::calculateThreshold(int threshold)
+    {
+        return (std::max(10, threshold / 10));
+    }
