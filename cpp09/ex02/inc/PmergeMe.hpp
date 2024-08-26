@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 22:36:08 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/25 22:09:19 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:49:00 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ class PmergeMe
                     return false;
                 }
             }
-
                 return true; // No hay elementos repetidos
         }
 
@@ -82,21 +81,33 @@ class PmergeMe
         void parse_values(std::string &str, STL &container) {
             std::stringstream ss(str);
             std::string token;
-            char delimiter = ' ';
+            
 
             if (str.empty())
                 throw std::invalid_argument("Empty string");
-            // Iterar sobre los tokens separados por espacios
-            while (std::getline(ss, token, delimiter)) {
+            while (ss >> token)
+            {
                 std::stringstream tokenStream(token);
                 int value;
 
                 // Comprobar si el token es un número entero válido
-                if (!(tokenStream >> value) || value < 0 || tokenStream.peek() != EOF)
+                if (!(tokenStream >> value) || value < 0 || !tokenStream.eof() || tokenStream.fail())
                     throw std::invalid_argument("Invalid number: " + token);
                 // Añadir el número a las estructuras de datos
                 container.push_back(value);
             }
+            // Si el delimitador no fuesen espacios, se podría cambiar aquí, por ejemplo "-"
+            // char delimiter = ' ';
+            // while (std::getline(ss, token, delimiter)) {
+            //     std::stringstream tokenStream(token);
+            //     int value;
+
+            //     // Comprobar si el token es un número entero válido
+            //     if (!(tokenStream >> value) || value < 0 || tokenStream.peek() != EOF)
+            //         throw std::invalid_argument("Invalid number: " + token);
+            //     // Añadir el número a las estructuras de datos
+            //     container.push_back(value);
+            // }
             //iter_print(container);
             fordJohnson(container, 0, container.size() -1);
         }
@@ -133,14 +144,11 @@ class PmergeMe
         }
 
        	template <typename Container>
-        void insertionSort(Container &arr, int left, int right)
-        {
-            for (int i = left + 1; i <= right; i++)
-            {
+        void insertionSort(Container &arr, int left, int right){
+            for (int i = left + 1; i <= right; i++){
                 typename Container::value_type key = arr[i];
                 int j = i - 1;
-                while (j >= left && arr[j] > key)
-                {
+                while (j >= left && arr[j] > key){
                     arr[j + 1] = arr[j];
                     j--;
                 }

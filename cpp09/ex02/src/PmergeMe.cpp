@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 22:36:14 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/25 22:06:39 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:23:16 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ void PmergeMe::init()
     try 
     {
         parse_values(_str, this->_values_1);
-        parse_values(_str,  this->_values_2);
-        //parse_values(_str,  this->_values_3);
-               
+        parse_values(_str,  this->_values_2);             
     } 
     catch (std::exception &e) 
     {
