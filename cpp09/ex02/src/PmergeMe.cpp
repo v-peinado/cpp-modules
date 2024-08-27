@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 22:36:14 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/26 15:23:16 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:17:12 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &rhs)
 * -------------------------------- MEMBER FUNCTIONS -------------------------*
 *****************************************************************************/
 
-std::string PmergeMe::to_string(unsigned int value) {
+std::string PmergeMe::toString(unsigned int value) {
     std::stringstream ss;
     ss << value;
     return ss.str();
@@ -43,10 +43,11 @@ std::string PmergeMe::to_string(unsigned int value) {
 
 void PmergeMe::init()
 {
+    this->alreadyPrinted = false;
     try 
     {
-        parse_values(_str, this->_values_1);
-        parse_values(_str,  this->_values_2);             
+        parseValues(_str, this->_values_1);
+        parseValues(_str,  this->_values_2);       
     } 
     catch (std::exception &e) 
     {
@@ -54,7 +55,15 @@ void PmergeMe::init()
         return ;
     }
 }
-    int PmergeMe::calculateThreshold(int threshold)
-    {
-        return (std::max(10, threshold / 10));
-    }
+
+/*
+    En esta funcion calcularemos la longitud que consideraremos adecuada para que insertion sort sea mas rapido que merge sort
+    Para ello, calcularemos el threshold como el maximo entre 10 y el 10% del tamaño del vector,
+    es decir si el tamaño del vector es 100, el threshold sera 10, si es 1000, el threshold sera 100, asi sucesivamente
+    No ponemos el trheshold fijo porque si el vector es muy grande, se llamaria demasiadas veces a insertion sort.
+*/
+int PmergeMe::calculateThreshold(int threshold)
+{
+    return (std::max(10, threshold / 10));
+}
+

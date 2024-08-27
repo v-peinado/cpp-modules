@@ -6,7 +6,7 @@
 /*   By: vpeinado <victor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:32:28 by vpeinado          #+#    #+#             */
-/*   Updated: 2024/08/22 20:25:21 by vpeinado         ###   ########.fr       */
+/*   Updated: 2024/08/26 13:33:26 by vpeinado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,16 @@ void BitcoinExchange::is_valid_date(std::string date, std::string filename, int 
         - Si el primer delimitador no es un guion, lanzamos una excepción
         - Si el segundo delimitador no es un guion, lanzamos una excepción
         - Si el flujo de datos falla, lanzamos una excepción
-        - Si no se ha llegado al final del flujo de datos, lanzamos una excepción  
+        - Si no se ha llegado al final del flujo de datos, lanzamos una excepción
+        Razones por las ss puede dar fail() o no estar en eof():
+        - Si la fecha no tiene el formato correcto, ss no podra parsearla y dara fail()
+        - Si la fecha tiene mas de dos guiones, ss no podra parsearla y dara fail()
+        - Si la fecha tiene menos de dos guiones, ss no podra parsearla y dara fail()
+        Hay casos especificos que no dara fail pero no llegara al final del flujo de datos:
+        - Si la fecha tiene mas caractreres despues del dia, ss no podra parsearla y no llegara al final del flujo de datos
     */
+
+    
     if (!(ss >> year >> delimiter1 >> month >> delimiter2 >> day) || delimiter1 != '-' || delimiter2 != '-' || ss.fail() || !ss.eof())
         throw std::runtime_error("Error: invalid date format in file " + filename + " at line " + to_string(i) + " => " + date);
     if (year < 2009)
@@ -130,6 +138,8 @@ void BitcoinExchange::validLineDB(std::string line, std::string filename, int i)
     std::string key;
     double value;
     std::stringstream ss(line);
+    // Parseamos la linea y guardamos la fecha y el valor en dos variables con getline, poniendo como delimitador el caracter ','
+    // se guardara en key lo que haya antes del delimitador y el resto de ss lo guardaremos en value usando el operador >> que nos permite convertir el resto de la linea a double
     std::getline(ss, key, ',');
     ss >> value;
     is_valid_date(key, filename, i);
@@ -165,26 +175,30 @@ void BitcoinExchange::validLineInput(std::string line, std::string filename, int
     */
     std::string key;
     double value;
-    std::getline(ss, key, '|');
-    ss >> value;
+    std::getline(ss, key, '|'); // obtenemos la fecha, en key se guardara lo que hay antes del delimitador "|"
+    ss >> value; //El resto de la linea se guarda en value, que sera el valor de la moneda
     is_valid_date(key, filename, i);
     if (value < 0)
         throw std::runtime_error("Error: the value cannot be less than 0 in file " + filename + " at line " + to_string(i) + " => " + line);
     if (value > 1000)
         throw std::runtime_error("Error: the value cannot be greater than 1000 in file " + filename + " at line " + to_string(i) + " => " + line);
+    //Si la conversion falla o no hemos llegado al final del flujo de datos, lanzamos una excepción
     if (ss.fail() || !ss.eof())
         throw std::runtime_error("Error: invalid value format in file " + filename + " at line " + to_string(i) + " => " + line);
+    //Con find buscamos la fecha en el map, si la encontramos antes de llegar al final del map, imprimimos el resultado
     if (_data.find(key) != _data.end())
     {
         std::cout << key << " => " << value << " = " << value * _data[key] << std::endl;
     }
     else
     {
-        std::map<std::string, double>::iterator it = _data.lower_bound(key); // Buscamos la fecha mas cercana por debajo
-        if (it == _data.begin())                                             // Si no hay fecha por debajo, lanzamos una excepción
+        // Al estas las fechas en formato "YYYY-MM-DD" podemos usar lower_bound para buscar la fecha anterior
+        std::map<std::string, double>::iterator it = _data.lower_bound(key); // lower_bound nos devuelve un iterador al primer elemento que no es menor que key, luego haremos it--
+        if (it == _data.begin()) // significa que la clave key que buscas es menor o igual a la primera clave en el mapa y lower_bound devuelve begin()
             throw std::runtime_error("Error: no exchange rate data available for date " + key + " in file " + filename + " at line " + to_string(i) + " => " + line);
         else
         {
+            //it apunta al primer elemento que no es menor que key, por lo que debemos retroceder para obtener la fecha anterior
             it--;
             std::cout << key << " => " << value << " = " << value * it->second << std::endl;
         }
@@ -268,7 +282,6 @@ void BitcoinExchange::parseInputFile(std::string filename)
     while (std::getline(file, line))
     {
         i++; // Para saber en que linea estamos
-        std::stringstream ss(line);
         if (line.empty())
             continue;
         // Si la linea no es valida, lanzamos una excepción especifica y continuamos con la siguiente linea

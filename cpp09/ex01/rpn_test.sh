@@ -30,10 +30,14 @@ check_decimal_support() {
 
 # Verificar el soporte de decimales
 if check_decimal_support; then
-    echo "Decimal support detected."
+    echo "------------------------------------"
+    echo "     Decimal support detected."
+    echo "------------------------------------"
     USE_DECIMALS=true
 else
-    echo "No decimal support detected."
+    echo "------------------------------------"
+    echo "    No decimal support detected."
+    echo "------------------------------------"
     USE_DECIMALS=false
 fi
 
@@ -42,7 +46,7 @@ declare -A tests
 if $USE_DECIMALS; then
   tests=(
     ["2 3 4 * +"]="14"
-    ["5 1 2 + 4 * + 3 -"]="14"
+    ["5 1 2 + 0.4 * + 3 -"]="14"
     ["7 8 + 3 2 + /"]="3"
     ["3 4 5 * + 6 -"]="17"
     ["6 5 2 3 + 8 * + 3 + *"]="288"
@@ -58,16 +62,20 @@ else
     ["6 5 2 3 + 8 * + 3 + *"]="288"
     ["7 2 - 3 /"]="1"  # Ajustado para enteros
     ["2 3 4 * 5 + -"]="-15"
+    ["2 -3 +"]="-1" # Numero negativo
   )
 fi
 
 # Agregar pruebas que deberían fallar
 declare -A failing_tests
 failing_tests=(
-  ["5 1 2 + +"]="Invalid"  # Operadores adicionales sin suficientes operandos
+  #["5 1 2 + +"]="Invalid"  # Es valido, para demostrar que sirve
   ["2 3 + *"]="Invalid"  # Operadores adicionales sin suficientes operandos
   ["7 8 * 3 / 2 + *"]="Invalid"  # Operaciones y resultados incorrectos
   ["1 2 3 + * +"]="Invalid"  # Operaciones sin suficientes operandos
+  ["+ 1 2 3 + "]="Invalid"  # Operador sin operando
+  ["9 9 9 9"]="Ivalid"
+  ["4 0 /"]="Invalid" # Division entre 0
 )
 
 # Evaluar expresiones que deberían pasar
